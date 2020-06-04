@@ -149,7 +149,9 @@
     <Content Include="default.aspx" />
     <Content Include="favicon.png" />
     <Content Include="FundTransfer.aspx" />
+    <Content Include="brand.svg" />
     <Content Include="Main.aspx" />
+    <Content Include="styles.css" />
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
