@@ -2,3 +2,11 @@
     font-size: 2rem;
     font-family: 'Bangers', cursive;
 }
+
+.img-cover {
+    object-fit: cover !important;
+}
+
+.d-dropdown {
+    z-index: 1000 !important;
+}
