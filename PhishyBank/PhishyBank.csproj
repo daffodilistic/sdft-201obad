@@ -147,6 +147,7 @@
   <ItemGroup>
     <Content Include="callback.aspx" />
     <Content Include="default.aspx" />
+    <Content Include="thumbnail.png" />
     <Content Include="favicon.png" />
     <Content Include="FundTransfer.aspx" />
     <Content Include="brand.svg" />
