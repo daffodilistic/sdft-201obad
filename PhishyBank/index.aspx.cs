@@ -11,7 +11,7 @@ namespace PhishyBank
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-
+            lblDebugStatus.Text = "Debug status: " + (this.Context.IsDebuggingEnabled.ToString());
         }
     }
 }

@@ -15,7 +15,7 @@ namespace PhishyBank
             OAuth2 oauthContainer = new OAuth2();
             oauthContainer.client_id = "911de6ba62ca08d8";
             oauthContainer.client_secret = "bfc36cdf50727803bf8bf8677fd0d1ac";
-            oauthContainer.redirect_uri = "http://localhost:3000/callback.aspx";
+            oauthContainer.redirect_uri = new System.Uri(Page.Request.Url, "/callback.aspx").AbsoluteUri;
 
             string responseCode = Request.QueryString["code"];
             APIAccess fidorApi = new APIAccess();
