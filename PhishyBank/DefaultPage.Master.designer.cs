@@ -7,11 +7,11 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace Project5
+namespace PhishyBank
 {
 
 
-    public partial class Default
+    public partial class DefaultPage
     {
 
         /// <summary>

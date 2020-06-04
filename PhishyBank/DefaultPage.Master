@@ -1,4 +1,4 @@
-﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="Default.Master.cs" Inherits="Project5.Default" %>
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="DefaultPage.Master.cs" Inherits="PhishyBank.DefaultPage" %>
 
 <!DOCTYPE html>
 

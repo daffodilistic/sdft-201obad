@@ -187,12 +187,12 @@
     <Compile Include="Main.aspx.designer.cs">
       <DependentUpon>Main.aspx</DependentUpon>
     </Compile>
-    <Compile Include="Default.Master.cs">
-      <DependentUpon>Default.Master</DependentUpon>
+    <Compile Include="DefaultPage.Master.cs">
+      <DependentUpon>DefaultPage.Master</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="Default.Master.designer.cs">
-      <DependentUpon>Default.Master</DependentUpon>
+    <Compile Include="DefaultPage.Master.designer.cs">
+      <DependentUpon>DefaultPage.Master</DependentUpon>
     </Compile>
     <Compile Include="Token.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -200,7 +200,7 @@
   <ItemGroup>
     <None Include="packages.config" />
     <None Include="Properties\PublishProfiles\phishybank - Web Deploy.pubxml" />
-    <Content Include="Default.Master" />
+    <Content Include="DefaultPage.Master" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
