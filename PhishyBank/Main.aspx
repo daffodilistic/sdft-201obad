@@ -1,4 +1,4 @@
-﻿<%@ Page Language="C#" Async="true" MasterPageFile="~/Site1.Master" AutoEventWireup="true" CodeBehind="Main.aspx.cs" Inherits="Project5.Main" %>
+﻿<%@ Page Language="C#" Async="true" MasterPageFile="~/Default.Master" AutoEventWireup="true" CodeBehind="Main.aspx.cs" Inherits="Project5.Main" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="Body" runat="server">
     <form id="form1" runat="server">
         <div>
