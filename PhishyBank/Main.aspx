@@ -1,5 +1,7 @@
 ﻿<%@ Page Language="C#" Async="true" MasterPageFile="~/Default.Master" AutoEventWireup="true" CodeBehind="Main.aspx.cs" Inherits="Project5.Main" %>
-<asp:Content ID="Content1" ContentPlaceHolderID="Body" runat="server">
+<asp:Content ID="Content1" ContentPlaceHolderID="HeadContent" runat="server">
+</asp:Content>
+<asp:Content ID="Content2" ContentPlaceHolderID="BodyContent" runat="server">
     <form id="form1" runat="server">
         <div>
             <asp:Button ID="btnGetAccount" runat="server" Text="Get Account" OnClick="btnGetAccount_Click" />

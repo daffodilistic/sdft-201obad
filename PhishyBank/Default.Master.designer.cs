@@ -15,21 +15,21 @@ namespace Project5
     {
 
         /// <summary>
-        /// CssIncludes control.
+        /// HeadContent control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.ContentPlaceHolder CssIncludes;
+        protected global::System.Web.UI.WebControls.ContentPlaceHolder HeadContent;
 
         /// <summary>
-        /// Body control.
+        /// BodyContent control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.ContentPlaceHolder Body;
+        protected global::System.Web.UI.WebControls.ContentPlaceHolder BodyContent;
     }
 }
