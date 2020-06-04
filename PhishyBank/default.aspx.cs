@@ -13,8 +13,13 @@ namespace PhishyBank
         {
             if (this.Context.IsDebuggingEnabled)
             {
-                lblDebugStatus.Text = "DEBUG MODE";
+                lblDebugStatus.Visible = true;
             }
+        }
+
+        protected void LinkButton1_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }
