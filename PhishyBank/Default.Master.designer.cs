@@ -11,7 +11,7 @@ namespace Project5
 {
 
 
-    public partial class Site1
+    public partial class Default
     {
 
         /// <summary>

@@ -1,4 +1,4 @@
-﻿<%@ Page Language="C#" Async="true" AutoEventWireup="true" CodeBehind="FundTransfer.aspx.cs" Inherits="Project5.FundTransfer" %>
+﻿<%@ Page Language="C#" Async="true" AutoEventWireup="true" CodeBehind="FundTransfer.aspx.cs" Inherits="PhishyBank.FundTransfer" %>
 
 <!DOCTYPE html>
 

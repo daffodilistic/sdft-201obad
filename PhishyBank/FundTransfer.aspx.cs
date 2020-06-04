@@ -9,7 +9,7 @@ using System.Web.UI;
 using System.Web.UI.WebControls;
 using System.Diagnostics;
 
-namespace Project5
+namespace PhishyBank
 {
     public partial class FundTransfer : System.Web.UI.Page
     {

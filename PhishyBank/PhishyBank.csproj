@@ -148,6 +148,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="callback.aspx" />
+    <Content Include="Default.aspx" />
     <Content Include="FundTransfer.aspx" />
     <Content Include="Main.aspx" />
     <Content Include="Web.config" />
@@ -164,6 +165,13 @@
       <DependentUpon>callback.aspx</DependentUpon>
     </Compile>
     <Compile Include="Customers.cs" />
+    <Compile Include="Default.aspx.cs">
+      <DependentUpon>Default.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Default.aspx.designer.cs">
+      <DependentUpon>Default.aspx</DependentUpon>
+    </Compile>
     <Compile Include="FundTransfer.aspx.cs">
       <DependentUpon>FundTransfer.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>

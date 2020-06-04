@@ -1,4 +1,4 @@
-﻿<%@ Page Language="C#" Async="true" MasterPageFile="~/Default.Master" AutoEventWireup="true" CodeBehind="Main.aspx.cs" Inherits="Project5.Main" %>
+﻿<%@ Page Language="C#" Async="true" MasterPageFile="~/Default.Master" AutoEventWireup="true" CodeBehind="Main.aspx.cs" Inherits="PhishyBank.Main" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="HeadContent" runat="server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="BodyContent" runat="server">
