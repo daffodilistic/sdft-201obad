@@ -1,4 +1,4 @@
-﻿namespace PhishyBank
+﻿namespace Phishy
 {
     public class AccountCollection
     {

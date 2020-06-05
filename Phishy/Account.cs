@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace PhishyBank
+namespace Phishy
 {
     public class Account
     {

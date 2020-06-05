@@ -6,7 +6,7 @@ using System.Web.UI;
 using System.Web.UI.WebControls;
 using FintechAPI;
 
-namespace PhishyBank
+namespace Phishy
 {
     public partial class callback : System.Web.UI.Page
     {

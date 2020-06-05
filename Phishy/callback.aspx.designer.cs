@@ -7,20 +7,20 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace PhishyBank
+namespace Phishy
 {
 
 
-    public partial class Default
+    public partial class callback
     {
 
         /// <summary>
-        /// lblDebugStatus control.
+        /// form1 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblDebugStatus;
+        protected global::System.Web.UI.HtmlControls.HtmlForm form1;
     }
 }
