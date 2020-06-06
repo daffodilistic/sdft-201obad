@@ -11,8 +11,8 @@
     <ProjectTypeGuids>{349c5851-65df-11da-9384-00065b846f21};{fae04ec0-301f-11d3-bf4b-00c04f79efbc}</ProjectTypeGuids>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>PhishyBank</RootNamespace>
-    <AssemblyName>PhishyBank</AssemblyName>
+    <RootNamespace>Phishy</RootNamespace>
+    <AssemblyName>Phishy</AssemblyName>
     <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
     <UseIISExpress>true</UseIISExpress>
     <Use64BitIISExpress />
@@ -173,6 +173,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="callback.aspx" />
+    <Content Include="Login.aspx" />
     <Content Include="default.aspx" />
     <Content Include="landing-2.jpg" />
     <Content Include="landing-3.jpg" />
@@ -195,6 +196,13 @@
     </Compile>
     <Compile Include="callback.aspx.designer.cs">
       <DependentUpon>callback.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Login.aspx.cs">
+      <DependentUpon>Login.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Login.aspx.designer.cs">
+      <DependentUpon>Login.aspx</DependentUpon>
     </Compile>
     <Compile Include="Customers.cs" />
     <Compile Include="default.aspx.cs">
@@ -226,6 +234,7 @@
     <Compile Include="DefaultPage.Master.designer.cs">
       <DependentUpon>DefaultPage.Master</DependentUpon>
     </Compile>
+    <Compile Include="PhishyHelper.cs" />
     <Compile Include="Token.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
