@@ -4,6 +4,8 @@ using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
+using PostmarkDotNet;
+using PostmarkDotNet.Model;
 
 namespace Phishy
 {
@@ -17,9 +19,28 @@ namespace Phishy
             }
         }
 
-        protected void LinkButton1_Click(object sender, EventArgs e)
+        protected async void btnTestPostmark_Click(object sender, EventArgs e)
         {
+            // Send an email asynchronously:
+            var message = new PostmarkMessage()
+            {
+                To = "nemo@phishybank.site",
+                From = "noreply@phishybank.site",
+                TrackOpens = true,
+                Subject = "Forgot Password",
+                TextBody = "Forgot Password?",
+                HtmlBody = "<html><body>Forgot Password?</body></html>",
+                Tag = "Password Reset"
+            };
 
+            //var imageContent = File.ReadAllBytes("test.jpg");
+            //message.AddAttachment(imageContent, "test.jpg", "image/jpg", "cid:embed_name.jpg");
+
+            var client = new PostmarkClient("e8603c27-0841-47fe-8cc6-daf4163de446");
+            var sendResult = await client.SendMessageAsync(message);
+
+            if (sendResult.Status == PostmarkStatus.Success) { Response.Write("OK"); }
+            else { /* Resolve issue.*/ }
         }
     }
 }

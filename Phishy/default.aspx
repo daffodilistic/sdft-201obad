@@ -1,4 +1,4 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/DefaultPage.Master" AutoEventWireup="true" CodeBehind="default.aspx.cs" Inherits="Phishy.Default" %>
+﻿<%@ Page Title="" Async="true" Language="C#" MasterPageFile="~/DefaultPage.Master" AutoEventWireup="true" CodeBehind="default.aspx.cs" Inherits="Phishy.Default" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="HeadContent" runat="server">
 </asp:Content>
@@ -17,10 +17,15 @@
             <div class="mr-auto">
             </div>
             <ul class="navbar-nav">
-                <li class="nav-item active">
+                <li class="nav-item">
                     <a class="nav-link btn btn-success" href="login.aspx">
                         <i class="fas fa-sign-in-alt"></i>&nbsp;Login
                     </a>
+                </li>
+                <li class="nav-item">
+                    <form id="form1" runat="server">
+                    <asp:Button ID="btnTestPostmark" runat="server" Text="Send Email" OnClick="btnTestPostmark_Click" />
+                    </form>
                 </li>
             </ul>
         </div>
@@ -42,7 +47,7 @@
         <div class="mr-auto">
             <asp:Label ID="lblDebugStatus" runat="server" Visible="false" Text="DEBUG MODE"></asp:Label>
         </div>
-        <h6 class="navbar-text my-0 py-0">Serving Nigerian Princes since 2020
+        <h6 class="navbar-text my-0 py-0">Disclaimer: This is a site intended for demo purposes only.
         </h6>
     </nav>
 </asp:Content>
