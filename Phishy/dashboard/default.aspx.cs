@@ -6,23 +6,13 @@ using System.Net.Http;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
+using FintechAPI;
+using Phishy.Classes;
 
 namespace Phishy
 {
-    public partial class Main : System.Web.UI.Page
+    public partial class Main : SecurePage
     {
-        string accessToken;
-
-        protected void Page_Load(object sender, EventArgs e)
-        {
-            if (Session["Access Token"] != null)
-            {
-                accessToken = (string) Session["Access Token"];
-                //string message = String.Format("<h4 style='font-family:verdana;'>Access Token: {0}</h4>", accessToken);
-                //Response.Write(message);
-            }
-        }
-
 
         protected async void btnGetAccount_Click(object sender, EventArgs e)
         {

@@ -1,4 +1,4 @@
-﻿<%@ Page Language="C#" Async="true" AutoEventWireup="true" CodeBehind="Login.aspx.cs" Inherits="Phishy.Login" %>
+﻿<%@ Page Language="C#" Async="true" AutoEventWireup="true" CodeBehind="login.aspx.cs" Inherits="Phishy.Login" %>
 
 <!DOCTYPE html>
 

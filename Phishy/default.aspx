@@ -1,4 +1,4 @@
-﻿<%@ Page Title="" Async="true" Language="C#" MasterPageFile="~/DefaultPage.Master" AutoEventWireup="true" CodeBehind="default.aspx.cs" Inherits="Phishy.Default" %>
+﻿<%@ Page Title="" Async="true" Language="C#" MasterPageFile="~/templates/DefaultPage.Master" AutoEventWireup="true" CodeBehind="default.aspx.cs" Inherits="Phishy.Default" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="HeadContent" runat="server">
 </asp:Content>
@@ -6,7 +6,7 @@
     <nav class="navbar sticky-top navbar-expand-lg navbar-dark" style="background-color: #FF3435;">
         <a class="navbar-brand" href="#">
             <div class="row mx-auto">
-                <img src="brand.svg" width="64" height="64" alt="" loading="lazy">
+                <img src="assets/brand.svg" width="64" height="64" alt="" loading="lazy">
                 <div class="brand my-auto">Phishy Bank</div>
             </div>
         </a>
@@ -24,22 +24,22 @@
                 </li>
                 <li class="nav-item">
                     <form id="form1" runat="server">
-                    <asp:Button ID="btnTestPostmark" runat="server" Text="Send Email" OnClick="btnTestPostmark_Click" />
+                        <asp:Button ID="btnTestPostmark" runat="server" Text="Send Email" OnClick="btnTestPostmark_Click" />
                     </form>
                 </li>
             </ul>
         </div>
     </nav>
-    <div id="" class="carousel slide carousel-fade fixed-top d-dropdown"  data-interval="5000" data-ride="carousel">
+    <div id="" class="carousel slide carousel-fade fixed-top d-dropdown" data-interval="5000" data-ride="carousel">
         <div class="carousel-inner">
             <div class="carousel-item active">
-                <img class="d-flex align-items-center justify-content-center img-cover vh-100 w-100" src="landing.jpg">
+                <img class="d-flex align-items-center justify-content-center img-cover vh-100 w-100" src="assets/landing.jpg">
             </div>
             <div class="carousel-item">
-                <img class="d-flex align-items-center justify-content-center img-cover vh-100 w-100" src="landing-2.jpg">
+                <img class="d-flex align-items-center justify-content-center img-cover vh-100 w-100" src="assets/landing-2.jpg">
             </div>
             <div class="carousel-item">
-                <img class="d-flex align-items-center justify-content-center img-cover vh-100 w-100" src="landing-3.jpg">
+                <img class="d-flex align-items-center justify-content-center img-cover vh-100 w-100" src="assets/landing-3.jpg">
             </div>
         </div>
     </div>

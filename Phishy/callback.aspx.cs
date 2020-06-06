@@ -11,7 +11,7 @@ namespace Phishy
 {
     public partial class callback : System.Web.UI.Page
     {
-        protected async void Page_Load(object sender, EventArgs e)
+        protected void Page_Load(object sender, EventArgs e)
         {
             string responseCode = Request.QueryString["code"];
             OAuth2 oauthContainer = PhishyHelper.getFidorOauth2Container(this.Context.IsDebuggingEnabled);
@@ -24,8 +24,7 @@ namespace Phishy
             if (status.result == 0)
             {
                 Session["Access Token"] = status.value;
-                FintechAPI.Accounts accts = await fidorApi.GetAccounts(status.value);
-                Response.Redirect("Home.aspx");
+                Response.Redirect("dashboard/");
             }
         }
     }

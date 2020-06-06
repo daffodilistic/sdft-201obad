@@ -173,23 +173,20 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="callback.aspx" />
-    <Content Include="Login.aspx" />
+    <Content Include="login.aspx" />
     <Content Include="default.aspx" />
-    <Content Include="landing-2.jpg" />
-    <Content Include="landing-3.jpg" />
-    <Content Include="landing.jpg" />
-    <Content Include="thumbnail.png" />
-    <Content Include="favicon.png" />
+    <Content Include="assets\landing-2.jpg" />
+    <Content Include="assets\landing-3.jpg" />
+    <Content Include="assets\landing.jpg" />
+    <Content Include="assets\thumbnail.png" />
+    <Content Include="assets\favicon.png" />
     <Content Include="FundTransfer.aspx" />
-    <Content Include="brand.svg" />
-    <Content Include="Main.aspx" />
-    <Content Include="styles.css" />
+    <Content Include="assets\brand.svg" />
+    <Content Include="dashboard\default.aspx" />
+    <Content Include="assets\styles.css" />
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Account.cs" />
-    <Compile Include="AccountCollection.cs" />
-    <Compile Include="Accounts.cs" />
     <Compile Include="callback.aspx.cs">
       <DependentUpon>callback.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -197,14 +194,16 @@
     <Compile Include="callback.aspx.designer.cs">
       <DependentUpon>callback.aspx</DependentUpon>
     </Compile>
-    <Compile Include="Login.aspx.cs">
-      <DependentUpon>Login.aspx</DependentUpon>
+    <Compile Include="classes\SecurePage.cs">
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="Login.aspx.designer.cs">
-      <DependentUpon>Login.aspx</DependentUpon>
+    <Compile Include="login.aspx.cs">
+      <DependentUpon>login.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="Customers.cs" />
+    <Compile Include="login.aspx.designer.cs">
+      <DependentUpon>login.aspx</DependentUpon>
+    </Compile>
     <Compile Include="default.aspx.cs">
       <DependentUpon>default.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -219,29 +218,28 @@
     <Compile Include="FundTransfer.aspx.designer.cs">
       <DependentUpon>FundTransfer.aspx</DependentUpon>
     </Compile>
-    <Compile Include="InternalTransfer.cs" />
-    <Compile Include="Main.aspx.cs">
-      <DependentUpon>Main.aspx</DependentUpon>
+    <Compile Include="classes\InternalTransfer.cs" />
+    <Compile Include="dashboard\default.aspx.cs">
+      <DependentUpon>default.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="Main.aspx.designer.cs">
-      <DependentUpon>Main.aspx</DependentUpon>
+    <Compile Include="dashboard\default.aspx.designer.cs">
+      <DependentUpon>default.aspx</DependentUpon>
     </Compile>
-    <Compile Include="DefaultPage.Master.cs">
+    <Compile Include="templates\DefaultPage.Master.cs">
       <DependentUpon>DefaultPage.Master</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="DefaultPage.Master.designer.cs">
+    <Compile Include="templates\DefaultPage.Master.designer.cs">
       <DependentUpon>DefaultPage.Master</DependentUpon>
     </Compile>
-    <Compile Include="PhishyHelper.cs" />
-    <Compile Include="Token.cs" />
+    <Compile Include="classes\PhishyHelper.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
     <None Include="Properties\PublishProfiles\phishybank - Web Deploy.pubxml" />
-    <Content Include="DefaultPage.Master" />
+    <Content Include="templates\DefaultPage.Master" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
