@@ -180,7 +180,7 @@
     <Content Include="assets\landing.jpg" />
     <Content Include="assets\thumbnail.png" />
     <Content Include="assets\favicon.png" />
-    <Content Include="FundTransfer.aspx" />
+    <Content Include="dashboard\FundTransfer.aspx" />
     <Content Include="assets\brand.svg" />
     <Content Include="dashboard\default.aspx" />
     <Content Include="assets\styles.css" />
@@ -193,9 +193,6 @@
     </Compile>
     <Compile Include="callback.aspx.designer.cs">
       <DependentUpon>callback.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="classes\SecurePage.cs">
-      <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="login.aspx.cs">
       <DependentUpon>login.aspx</DependentUpon>
@@ -211,11 +208,11 @@
     <Compile Include="default.aspx.designer.cs">
       <DependentUpon>default.aspx</DependentUpon>
     </Compile>
-    <Compile Include="FundTransfer.aspx.cs">
+    <Compile Include="dashboard\FundTransfer.aspx.cs">
       <DependentUpon>FundTransfer.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="FundTransfer.aspx.designer.cs">
+    <Compile Include="dashboard\FundTransfer.aspx.designer.cs">
       <DependentUpon>FundTransfer.aspx</DependentUpon>
     </Compile>
     <Compile Include="classes\InternalTransfer.cs" />

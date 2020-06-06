@@ -18,14 +18,9 @@
             </div>
             <ul class="navbar-nav">
                 <li class="nav-item">
-                    <a class="nav-link btn btn-success" href="login.aspx">
+                    <a class="btn btn-success" href="login.aspx">
                         <i class="fas fa-sign-in-alt"></i>&nbsp;Login
                     </a>
-                </li>
-                <li class="nav-item">
-                    <form id="form1" runat="server">
-                        <asp:Button ID="btnTestPostmark" runat="server" Text="Send Email" OnClick="btnTestPostmark_Click" />
-                    </form>
                 </li>
             </ul>
         </div>

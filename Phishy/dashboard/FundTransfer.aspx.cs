@@ -15,11 +15,16 @@ namespace Phishy
     public partial class FundTransfer : System.Web.UI.Page
     {
         string accessToken;
+
         protected void Page_Load(object sender, EventArgs e)
         {
-            if (!IsPostBack)
+            if (Session["Access Token"] != null)
             {
                 accessToken = (string)Session["Access Token"];
+            }
+            else
+            {
+                Response.Redirect("~/default.aspx");
             }
         }
 
