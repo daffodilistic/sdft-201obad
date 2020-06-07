@@ -24,6 +24,7 @@ namespace Phishy
             if (status.result == 0)
             {
                 Session["Access Token"] = status.value;
+                Session["APIAccess"] = fidorApi;
                 Response.Redirect("dashboard/");
             }
         }

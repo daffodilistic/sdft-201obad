@@ -58,6 +58,9 @@ namespace Phishy
 
             if (response.StatusCode == System.Net.HttpStatusCode.Created)
             {
+                Debug.Write("data is");
+                Debug.Write(response.Content.ToString());
+
                 lblState.Text = "Successful";
             }
 

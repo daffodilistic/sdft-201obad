@@ -12,5 +12,6 @@ namespace Phishy
         public string external_uid { get; set; }
         public string amount { get; set; }
         public string subject { get; set; }
+        public string transaction_id { get; set; }
     }
 }
