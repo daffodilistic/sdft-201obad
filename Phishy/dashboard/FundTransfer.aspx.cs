@@ -15,12 +15,14 @@ namespace Phishy
     public partial class FundTransfer : System.Web.UI.Page
     {
         string accessToken;
+        APIAccess fidorApi;
 
         protected void Page_Load(object sender, EventArgs e)
         {
             if (Session["Access Token"] != null)
             {
-                accessToken = (string)Session["Access Token"];
+                accessToken = (string) Session["Access Token"];
+                fidorApi = (APIAccess) Session["APIAccess"];
             }
             else
             {
@@ -30,8 +32,8 @@ namespace Phishy
 
         protected async void btnTransfer_Click(object sender, EventArgs e)
         {
-            accessToken = (string)Session["Access Token"];
-            Accounts accounts = (Accounts)Session["Accounts"];
+            accessToken = (string) Session["Access Token"];
+            Accounts accounts = await fidorApi.GetAccounts(accessToken);
 
             Guid g = Guid.NewGuid();
             string externalUid = g.ToString().Replace("-", string.Empty);
