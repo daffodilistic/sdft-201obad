@@ -13,20 +13,20 @@ namespace Phishy
     {
         protected void Page_Load(object sender, EventArgs e)
         {
+            // Only allow page to be loaded if code is in query string
             string responseCode = Request.QueryString["code"];
-            OAuth2 oauthContainer = PhishyHelper.getFidorOauth2Container(this.Context.IsDebuggingEnabled);
-            APIAccess fidorApi = new APIAccess();
-            APIAccess.Result status = new APIAccess.Result();
-            
-            status.result = -1;
-            status.value = "";
-            status = fidorApi.GetAccessToken(oauthContainer, responseCode);
-            if (status.result == 0)
+            if (responseCode != null)
             {
-                Session["Access Token"] = status.value;
-                Session["APIAccess"] = fidorApi;
-                Response.Redirect("dashboard/");
+                PhishyAPI fidorApi = new PhishyAPI();
+                fidorApi.InitializeSession(responseCode);
+                
+                if (PhishyAPI.isLoggedIn)
+                {
+                    Session["PhishyAPI"] = fidorApi;
+                    Response.Redirect("dashboard/");
+                }
             }
+            Response.Redirect("~/default.aspx");
         }
     }
 }

@@ -13,9 +13,8 @@ namespace Phishy
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            OAuth2 oauthContainer = PhishyHelper.getFidorOauth2Container(this.Context.IsDebuggingEnabled);
-            APIAccess fidorApi = new APIAccess();
-            fidorApi.GetAccessToken(oauthContainer, null);
+            PhishyAPI fidorApi = new PhishyAPI();
+            fidorApi.RedirectToFidor();
         }
     }
 }

@@ -11,7 +11,7 @@ namespace Phishy
         // Sample URL:
         // https://apm.np.sandbox.fidor.com/oauth/authorize?client_id=062e071527f30139&redirect_uri=http%3A%2F%2Flocalhost%3A3000%2Fcallback.aspx&state=login&response_type=code
 
-        internal static OAuth2 getFidorOauth2Container(bool isDebug)
+        internal static OAuth2 GetFidorOauth2Container(bool isDebug)
         {
             OAuth2 oauthContainer = new OAuth2();
             if (isDebug)
