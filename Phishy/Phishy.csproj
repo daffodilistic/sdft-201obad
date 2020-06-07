@@ -172,6 +172,8 @@
     <Reference Include="System.EnterpriseServices" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="assets\bootstrap.bundle.min.js" />
+    <Content Include="assets\bootstrap.min.css" />
     <Content Include="callback.aspx" />
     <Content Include="login.aspx" />
     <Content Include="default.aspx" />

@@ -21,16 +21,6 @@ namespace Phishy
             base.GetAccessToken(oauthContainer, null);
         }
 
-        internal Task<Customers> GetCustomers()
-        {
-            return base.GetCustomers(accessToken);
-        }
-
-        internal Task<Accounts> GetAccounts()
-        {
-            return base.GetAccounts(accessToken);
-        }
-
         internal Result InitializeSession(String code)
         {
             OAuth2 oauthContainer = PhishyHelper.GetFidorOauth2Container(HttpContext.Current.IsDebuggingEnabled);
@@ -53,6 +43,20 @@ namespace Phishy
             }
 
             return authResult;
+        }
+        internal Task<Customers> GetTransferHistory()
+        {
+            return base.GetCustomers(PhishyAPI.accessToken);
+        }
+
+        internal Task<Customers> GetCustomers()
+        {
+            return base.GetCustomers(PhishyAPI.accessToken);
+        }
+
+        internal Task<Accounts> GetAccounts()
+        {
+            return base.GetAccounts(PhishyAPI.accessToken);
         }
     }
 }

@@ -19,15 +19,15 @@ namespace Phishy
 
         protected void Page_Load(object sender, EventArgs e)
         {
-            if (Session["Access Token"] != null)
-            {
-                accessToken = (string) Session["Access Token"];
-                fidorApi = (APIAccess) Session["APIAccess"];
-            }
-            else
-            {
-                Response.Redirect("~/default.aspx");
-            }
+            //if (Session["Access Token"] != null)
+            //{
+            //    accessToken = (string) Session["Access Token"];
+            //    fidorApi = (APIAccess) Session["APIAccess"];
+            //}
+            //else
+            //{
+            //    Response.Redirect("~/default.aspx");
+            //}
         }
 
         protected async void btnTransfer_Click(object sender, EventArgs e)
