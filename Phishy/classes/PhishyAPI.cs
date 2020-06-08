@@ -1,12 +1,16 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Globalization;
 using System.Linq;
+using System.Net.Http;
+using System.Text;
 using System.Threading.Tasks;
 using System.Web;
 using System.Web.UI;
 
 using FintechAPI;
+using Newtonsoft.Json;
 using PostmarkDotNet;
 using PostmarkDotNet.Model;
 
@@ -16,7 +20,7 @@ namespace Phishy
     // TODO: ideally this would be a Singleton...
     public class PhishyAPI : APIAccess
     {
-        internal static String accessToken { get; private set; } = null;
+        internal static string accessToken { get; private set; } = null;
         internal static bool isLoggedIn { get; private set; } = false;
 
         internal void RedirectToFidor()
@@ -50,13 +54,51 @@ namespace Phishy
             return authResult;
         }
 
-        internal async void SendNotificationEmail(
-            String recipient="nemo@phishybank.site",
-            String senderName="Phishy Bank",
-            Double amount=1.88)
+        internal async Task<InternalTransfer> SendMoneyInternally(String receiver, String subject, Double amount)
         {
-            String formattedAmount = amount.ToString("C2", CultureInfo.CreateSpecificCulture("en-SG"));
-            String formattedTime = DateTime.Now.ToString(new CultureInfo("en-SG"));
+            Accounts accounts = await GetAccounts();
+            Customers customers = await GetCustomers();
+
+            Guid g = Guid.NewGuid();
+            string externalUid = g.ToString().Replace("-", string.Empty);
+            string accountId = accounts.data[0].id.ToString();
+
+            InternalTransfer xferObject = new InternalTransfer();
+            xferObject.account_id = accountId;
+            xferObject.external_uid = externalUid;
+            xferObject.receiver = receiver;
+            xferObject.amount = Convert.ToUInt64(amount * 100);
+            xferObject.subject = subject;
+            
+            HttpResponseMessage response = new HttpResponseMessage();
+            HttpClient httpClient = new HttpClient();
+            httpClient.DefaultRequestHeaders.Add("Accept", "application/vnd.fidor.de; version=1, */*");
+            httpClient.DefaultRequestHeaders.Add("Authorization", "Bearer " + accessToken);
+
+            string json = JsonConvert.SerializeObject(xferObject);
+            StringContent xferContent = new StringContent(json, UnicodeEncoding.UTF8, "application/json");
+
+            response = await httpClient.PostAsync("https://api.np.sandbox.fidor.com/internal_transfers",
+                xferContent);
+
+            InternalTransfer xferResponse = null;
+            if (response.StatusCode == System.Net.HttpStatusCode.Created)
+            {
+                xferResponse = JsonConvert.DeserializeObject<InternalTransfer>(await response.Content.ReadAsStringAsync());
+                string senderName = customers.data[0].first_name + " " + customers.data[0].last_name;
+                SendNotificationEmail("nemo@phishybank.site", senderName, xferResponse.amount);
+            }
+
+            return xferResponse;
+        }
+
+        internal async void SendNotificationEmail(
+            string recipient="nemo@phishybank.site",
+            string senderName="Phishy Bank",
+            Double amount=188)
+        {
+            string formattedAmount = (amount / 100.0).ToString("C2", CultureInfo.CreateSpecificCulture("en-SG"));
+            string formattedTime = DateTime.Now.ToString(new CultureInfo("en-SG"));
 
             Dictionary<string, string> templateModelData = new Dictionary<string, string>() {
                 { "product_url", "https://www.phishybank.site" },

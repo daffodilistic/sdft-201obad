@@ -8,62 +8,46 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 using System.Diagnostics;
+
 using FintechAPI;
+using System.Globalization;
 
 namespace Phishy
 {
     public partial class FundTransfer : System.Web.UI.Page
     {
-        string accessToken;
-        APIAccess fidorApi;
+        PhishyAPI fidorApi;
 
         protected void Page_Load(object sender, EventArgs e)
         {
-            //if (Session["Access Token"] != null)
-            //{
-            //    accessToken = (string) Session["Access Token"];
-            //    fidorApi = (APIAccess) Session["APIAccess"];
-            //}
-            //else
-            //{
-            //    Response.Redirect("~/default.aspx");
-            //}
+            fidorApi = (PhishyAPI)Session["PhishyAPI"];
+            if (fidorApi != null)
+            {
+                // Do something
+            }
+            else
+            {
+                Response.Redirect("~/default.aspx", false);
+                Context.ApplicationInstance.CompleteRequest();
+            }
         }
 
         protected async void btnTransfer_Click(object sender, EventArgs e)
         {
-            accessToken = (string) Session["Access Token"];
-            Accounts accounts = await fidorApi.GetAccounts(accessToken);
+            InternalTransfer xferResponse = await fidorApi.SendMoneyInternally(txtTransferEmail.Text,txtSubject.Text,Convert.ToDouble(txtAmount.Text));
 
-            Guid g = Guid.NewGuid();
-            string externalUid = g.ToString().Replace("-", string.Empty);
-            string accountId = accounts.data[0].id.ToString();
-
-            InternalTransfer xferObject = new InternalTransfer();
-            xferObject.account_id = accountId;
-            xferObject.external_uid = externalUid;
-            xferObject.amount = (Convert.ToDouble(txtAmount.Text) * 100).ToString();
-            xferObject.receiver = txtTransferEmail.Text;
-            xferObject.subject = txtSubject.Text;
-
-            HttpResponseMessage response = new HttpResponseMessage();
-            HttpClient httpClient = new HttpClient();
-            httpClient.DefaultRequestHeaders.Add("Accept", "application/vnd.fidor.de; version=1, */*");
-            httpClient.DefaultRequestHeaders.Add("Authorization", "Bearer " + accessToken);
-
-            string json = JsonConvert.SerializeObject(xferObject);
-            StringContent xferContent =
-                new StringContent(json, UnicodeEncoding.UTF8, "application/json");
-
-            response = await httpClient.PostAsync("https://api.np.sandbox.fidor.com/internal_transfers",
-                xferContent);
-
-            if (response.StatusCode == System.Net.HttpStatusCode.Created)
+            if (xferResponse != null)
             {
-                Debug.Write("data is");
-                Debug.Write(response.Content.ToString());
+                string formattedAmount = (xferResponse.amount / 100.0).ToString("C2", CultureInfo.CreateSpecificCulture("en-SG"));
 
-                lblState.Text = "Successful";
+                lblSender.Text = xferResponse.account_id;
+                lblReciever.Text = xferResponse.receiver;
+                lblSubject.Text = xferResponse.subject;
+                lblAmount.Text = formattedAmount;
+                lblState.Text = "Success";
+            } else
+            {
+                lblState.Text = "FAILED";
             }
 
             tblTxnSummary.Visible = true;
