@@ -88,7 +88,7 @@ namespace Phishy
             {
                 xferResponse = JsonConvert.DeserializeObject<InternalTransfer>(responseString);
                 string senderName = customers.data[0].first_name + " " + customers.data[0].last_name;
-                SendNotificationEmail("nemo@phishybank.site", senderName, xferResponse.amount, xferResponse.subject);
+                SendNotificationEmail(xferResponse.receiver, senderName, xferResponse.amount, xferResponse.subject);
             }
 
             return xferResponse;
@@ -101,7 +101,9 @@ namespace Phishy
             string messageText="")
         {
             string formattedAmount = (amount / 100.0).ToString("C2", CultureInfo.CreateSpecificCulture("en-SG"));
-            string formattedTime = DateTime.Now.ToString(new CultureInfo("en-SG"));
+            // NOTE: Timezone is not set!
+            string formattedTime = TimeZoneInfo.ConvertTime(DateTime.Now,
+                 TimeZoneInfo.FindSystemTimeZoneById("Singapore Standard Time")).ToString(new CultureInfo("en-SG"));
 
             Dictionary<string, string> templateModelData = new Dictionary<string, string>() {
                 { "product_url", "https://www.phishybank.site" },
