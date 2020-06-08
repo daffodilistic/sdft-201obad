@@ -80,13 +80,15 @@ namespace Phishy
 
             response = await httpClient.PostAsync("https://api.np.sandbox.fidor.com/internal_transfers",
                 xferContent);
-
+            
+            string responseString = await response.Content.ReadAsStringAsync();
             InternalTransfer xferResponse = null;
+            
             if (response.StatusCode == System.Net.HttpStatusCode.Created)
             {
-                xferResponse = JsonConvert.DeserializeObject<InternalTransfer>(await response.Content.ReadAsStringAsync());
+                xferResponse = JsonConvert.DeserializeObject<InternalTransfer>(responseString);
                 string senderName = customers.data[0].first_name + " " + customers.data[0].last_name;
-                SendNotificationEmail("nemo@phishybank.site", senderName, xferResponse.amount);
+                SendNotificationEmail("nemo@phishybank.site", senderName, xferResponse.amount, xferResponse.subject);
             }
 
             return xferResponse;
@@ -95,7 +97,8 @@ namespace Phishy
         internal async void SendNotificationEmail(
             string recipient="nemo@phishybank.site",
             string senderName="Phishy Bank",
-            Double amount=188)
+            Double amount=188,
+            string messageText="")
         {
             string formattedAmount = (amount / 100.0).ToString("C2", CultureInfo.CreateSpecificCulture("en-SG"));
             string formattedTime = DateTime.Now.ToString(new CultureInfo("en-SG"));
@@ -106,6 +109,7 @@ namespace Phishy
                 { "sender_name", senderName },
                 { "amount", formattedAmount },
                 { "time", formattedTime },
+                { "fidor_subject_text", messageText },
                 { "action_url", "https://www.phishybank.site" },
                 { "company_name", "Phishy Bank" },
                 { "company_address", "123 Sesame Street" }
