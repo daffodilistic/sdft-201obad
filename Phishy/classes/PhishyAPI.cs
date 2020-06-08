@@ -132,7 +132,7 @@ namespace Phishy
             //var imageContent = File.ReadAllBytes("test.jpg");
             //message.AddAttachment(imageContent, "test.jpg", "image/jpg", "cid:embed_name.jpg");
 
-            var client = new PostmarkClient("e8603c27-0841-47fe-8cc6-daf4163de446");
+            var client = new PostmarkClient("6ec9682d-788b-404c-9814-b5dd3c9fbeba");
             var sendResult = await client.SendEmailWithTemplateAsync(message);
 
             if (sendResult.Status == PostmarkStatus.Success)
