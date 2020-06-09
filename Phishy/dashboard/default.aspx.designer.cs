@@ -15,13 +15,13 @@ namespace Phishy
     {
 
         /// <summary>
-        /// form1 control.
+        /// lblUserName control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlForm form1;
+        protected global::System.Web.UI.WebControls.Label lblUserName;
 
         /// <summary>
         /// lblValue control.
@@ -31,14 +31,5 @@ namespace Phishy
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Label lblValue;
-
-        /// <summary>
-        /// btnTransferMoney control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnTransferMoney;
     }
 }

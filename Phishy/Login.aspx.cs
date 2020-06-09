@@ -13,7 +13,17 @@ namespace Phishy
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            PhishyAPI fidorApi = new PhishyAPI();
+            PhishyAPI fidorApi = null;
+            if (Session["PhishyAPI"] != null)
+            {
+                fidorApi = (PhishyAPI) Session["PhishyAPI"];
+
+                Session.Abandon();
+
+                fidorApi.Logout();
+            }
+
+            fidorApi = new PhishyAPI();
             fidorApi.RedirectToFidor();
         }
     }

@@ -3,7 +3,7 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="HeadContent" runat="server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="BodyContent" runat="server">
-    <nav class="navbar sticky-top navbar-expand-lg navbar-dark" style="background-color: #FF3435;">
+    <nav class="navbar fixed-top navbar-expand-lg navbar-dark" style="background-color: #FF3435;">
         <a class="navbar-brand" href="#">
             <div class="row mx-auto">
                 <img src="assets/brand.svg" width="64" height="64" alt="" loading="lazy">
@@ -25,7 +25,7 @@
             </ul>
         </div>
     </nav>
-    <div id="" class="carousel slide carousel-fade fixed-top d-dropdown" data-interval="5000" data-ride="carousel">
+    <div id="" class="carousel slide carousel-fade" data-interval="5000" data-ride="carousel">
         <div class="carousel-inner">
             <div class="carousel-item active">
                 <img class="d-flex align-items-center justify-content-center img-cover vh-100 w-100" src="assets/landing.jpg">

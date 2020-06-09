@@ -38,11 +38,5 @@ namespace Phishy
                 Context.ApplicationInstance.CompleteRequest();
             }
         }
-
-        protected void btnTransferMoney_Click(object sender, EventArgs e)
-        {
-            Response.Redirect("FundTransfer.aspx", false);
-            Context.ApplicationInstance.CompleteRequest();
-        }
     }
 }

@@ -159,5 +159,24 @@ namespace Phishy
         {
             return base.GetAccounts(PhishyAPI.accessToken);
         }
+
+        internal async void Logout()
+        {
+            bool isDebug = HttpContext.Current.IsDebuggingEnabled;
+            string credentials = PhishyHelper.GetClientId(isDebug) + ":" + PhishyHelper.GetClientSecret(isDebug);
+            string authCredentials = System.Convert.ToBase64String(System.Text.Encoding.UTF8.GetBytes(credentials));
+            HttpResponseMessage response = new HttpResponseMessage();
+            HttpClient httpClient = new HttpClient();
+
+            //httpClient.DefaultRequestHeaders.Add("Accept", "application/vnd.fidor.de; version=1, */*");
+            httpClient.DefaultRequestHeaders.Add("Authorization", "Basic  " + authCredentials);
+
+            response = await httpClient.PostAsync("https://apm.sandbox.fidor.com/oauth/revoke?token=" + accessToken, null);
+
+            if (response.StatusCode != System.Net.HttpStatusCode.OK)
+            {
+                Debug.Write("ERROR!");
+            }
+        }
     }
 }

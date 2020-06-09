@@ -30,5 +30,29 @@ namespace Phishy
 
             return oauthContainer;
         }
+
+        internal static String GetClientId(bool isDebug)
+        {
+            if (isDebug)
+            {
+                return "062e071527f30139";
+            }
+            else
+            {
+                return "911de6ba62ca08d8";
+            }
+        }
+
+        internal static String GetClientSecret(bool isDebug)
+        {
+            if (isDebug)
+            {
+                return "aeae6e5fc945e322d821391418dac8f7";
+            }
+            else
+            {
+                return "bfc36cdf50727803bf8bf8677fd0d1ac";
+            }
+        }
     }
 }

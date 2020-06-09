@@ -7,6 +7,6 @@
     object-fit: cover !important;
 }
 
-.d-dropdown {
-    z-index: 1000 !important;
+.pt-body {
+    padding-top: 7rem !important;
 }

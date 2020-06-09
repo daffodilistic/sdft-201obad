@@ -227,6 +227,9 @@
     <Compile Include="dashboard\default.aspx.designer.cs">
       <DependentUpon>default.aspx</DependentUpon>
     </Compile>
+    <Compile Include="logout.ashx.cs">
+      <DependentUpon>logout.ashx</DependentUpon>
+    </Compile>
     <Compile Include="templates\DefaultPage.Master.cs">
       <DependentUpon>DefaultPage.Master</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -238,6 +241,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="logout.ashx" />
     <None Include="packages.config" />
     <None Include="Properties\PublishProfiles\phishybank - Web Deploy.pubxml" />
     <Content Include="templates\DefaultPage.Master" />
