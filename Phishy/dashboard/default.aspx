@@ -37,8 +37,19 @@
             </ul>
         </div>
     </nav>
-   <div class="container pt-body">
-       <h1>Hello!</h1>
-       <asp:Label ID="lblValue" runat="server" Text=""></asp:Label>
-   </div>
+    <div class="container pt-body">
+        <h1><b>Hello,
+            <asp:Label ID="lblUserFirstName" runat="server" Text="John Doe"></asp:Label>!</b></h1>
+        <br>
+        <h3>Your Account Summary</h3>
+        <hr>
+        <h5>Account No. <b>
+            <asp:Label ID="lblAccountId" runat="server" Text="62353535"></asp:Label></b></h5>
+        <h4>Balance Available: <b>
+            <asp:Label ID="lblAccountBalance" runat="server" Text="$18.88"></asp:Label></b></h4>
+        <br>
+        <h3>Recent Transactions</h3>
+        <hr>
+        <asp:Label ID="lblValue" runat="server" Text=""></asp:Label>
+    </div>
 </asp:Content>
