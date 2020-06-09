@@ -17,6 +17,7 @@
     <title>Phishy Bank</title>
     <link rel="icon" type="image/png" sizes="32x32" href="~/assets/favicon.png">
     <link href="https://fonts.googleapis.com/css2?family=Bangers&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="~/assets/bootstrap.min.css">
     <link rel="stylesheet" href="~/assets/styles.css">
     <asp:ContentPlaceHolder ID="HeadContent" runat="server">
     </asp:ContentPlaceHolder>
