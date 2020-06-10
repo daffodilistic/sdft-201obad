@@ -67,7 +67,7 @@
                 serverSide: true,
                 processing: true,
                 ajax: {
-                    url: "sample_txns.json",
+                    url: "transactions.ashx",
                     //dataSrc: (json) => {
                         //var returnData = new Array();
                         //for (var i = 0; i < json.data.length; i++) {

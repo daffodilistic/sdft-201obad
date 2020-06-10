@@ -205,6 +205,7 @@
       <DependentUpon>callback.aspx</DependentUpon>
     </Compile>
     <Compile Include="classes\PhishyAPI.cs" />
+    <Compile Include="classes\TransactionRecord.cs" />
     <Compile Include="login.aspx.cs">
       <DependentUpon>login.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -249,6 +250,7 @@
     <Compile Include="dashboard\transactions.ashx.cs">
       <DependentUpon>transactions.ashx</DependentUpon>
     </Compile>
+    <Compile Include="TransactionRecordContainer.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="logout.ashx" />
