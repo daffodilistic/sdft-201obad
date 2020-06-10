@@ -180,6 +180,8 @@
     <Content Include="assets\datatables\datatables.min.js" />
     <Content Include="assets\fontawesome\all.min.js" />
     <Content Include="assets\jquery\jquery-3.5.1.min.js" />
+    <Content Include="assets\luxon\luxon.min.js" />
+    <Content Include="assets\validate\validate.min.js" />
     <Content Include="callback.aspx" />
     <Content Include="login.aspx" />
     <Content Include="default.aspx" />
