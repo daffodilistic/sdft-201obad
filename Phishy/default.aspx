@@ -28,7 +28,7 @@
         </div>
     </div>
     <!-- END Modal -->
-    <nav class="navbar fixed-top navbar-expand-lg navbar-dark" style="background-color: #FF3435;">
+    <nav class="navbar fixed-top navbar-expand-lg navbar-dark" style="background-color: #E95420;">
         <a class="navbar-brand" href="#">
             <div class="row mx-auto">
                 <img src="assets/brand.svg" width="64" height="64" alt="" loading="lazy">
