@@ -15,7 +15,7 @@
     <meta property="og:url" content="https://phishybank.site">
     <meta name="twitter:card" content="summary_large_image">
     <title>Phishy Bank</title>
-    <link rel="icon" type="image/png" sizes="32x32" href="/assets/favicon.png">
+    <link rel="icon" type="image/png" sizes="1000x1000" href="/assets/favicon.png">
     <!-- Google Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Bangers&display=swap" rel="stylesheet">
     <!-- jQuery -->
