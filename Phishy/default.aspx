@@ -3,6 +3,31 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="HeadContent" runat="server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="BodyContent" runat="server">
+    <!-- BEGIN Modal -->
+    <div class="modal fade" id="aboutModal" data-backdrop="static" data-keyboard="false" tabindex="-1" role="dialog" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title" id="staticBackdropLabel">About Phishy Bank</h4>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <h5>Created by</h5>
+                    <p class="text-monospace">
+                        10200376B Seah Shih Wei Gerome
+                        <br />
+                        S01623826 Soh Thiam Hing
+                    </p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- END Modal -->
     <nav class="navbar fixed-top navbar-expand-lg navbar-dark" style="background-color: #FF3435;">
         <a class="navbar-brand" href="#">
             <div class="row mx-auto">

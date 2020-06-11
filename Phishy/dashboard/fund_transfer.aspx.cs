@@ -18,12 +18,13 @@ namespace Phishy.Dashboard
     {
         PhishyAPI fidorApi;
 
-        protected void Page_Load(object sender, EventArgs e)
+        protected async void Page_Load(object sender, EventArgs e)
         {
             fidorApi = (PhishyAPI)Session["PhishyAPI"];
             if (fidorApi != null)
             {
-                // Do something
+                Customers customers = await fidorApi.GetCustomers();
+                lblUserName.Text = customers.data[0].first_name + ", " + customers.data[0].last_name;
             }
             else
             {

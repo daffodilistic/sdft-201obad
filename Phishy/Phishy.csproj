@@ -208,6 +208,7 @@
       <DependentUpon>check_headers.ashx</DependentUpon>
     </Compile>
     <Compile Include="classes\PhishyAPI.cs" />
+    <Compile Include="classes\TransactionCollection.cs" />
     <Compile Include="classes\TransactionRecord.cs" />
     <Compile Include="login.aspx.cs">
       <DependentUpon>login.aspx</DependentUpon>

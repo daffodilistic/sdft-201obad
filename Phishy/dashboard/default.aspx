@@ -3,7 +3,7 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="HeadContent" runat="server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="BodyContent" runat="server">
-    <!-- Modal -->
+    <!-- BEGIN Modal -->
     <div class="modal fade" id="aboutModal" data-backdrop="static" data-keyboard="false" tabindex="-1" role="dialog" aria-labelledby="staticBackdropLabel" aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">
@@ -27,7 +27,7 @@
             </div>
         </div>
     </div>
-
+    <!-- END Modal -->
     <nav class="navbar fixed-top navbar-expand-lg navbar-dark bg-primary">
         <a class="navbar-brand" href="#">
             <div class="row mx-auto">

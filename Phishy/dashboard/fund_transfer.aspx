@@ -16,11 +16,14 @@
         <div class="collapse navbar-collapse" id="navbarNavDropdown">
             <div class="mr-auto">
                 <ul class="navbar-nav mr-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="./">Home</a>
+                    </li>
                     <li class="nav-item active">
-                        <a class="nav-link" href="./"><b>Home</b></a>
+                        <a class="nav-link" href="fund_transfer.aspx"><b>Transfer</b></a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="fund_transfer.aspx">Transfer</a>
+                        <a class="nav-link" data-toggle="modal" data-target="#aboutModal" href="">About</a>
                     </li>
                 </ul>
             </div>
