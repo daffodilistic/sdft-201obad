@@ -14,12 +14,6 @@
     <meta property="og:image:height" content="1000" />
     <meta property="og:url" content="https://phishybank.site">
     <meta name="twitter:card" content="summary_large_image">
-    <!-- Chrome, Firefox OS and Opera -->
-    <meta name="theme-color" content="#E95420">
-    <!-- Windows Phone -->
-    <meta name="msapplication-navbutton-color" content="#E95420">
-    <!-- iOS Safari -->
-    <meta name="apple-mobile-web-app-status-bar-style" content="#E95420">
     <title>Phishy Bank</title>
     <link rel="icon" type="image/png" sizes="32x32" href="/assets/favicon.png">
     <!-- Google Fonts -->
