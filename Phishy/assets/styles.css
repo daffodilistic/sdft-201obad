@@ -10,3 +10,12 @@
 .pt-body {
     padding-top: 7rem !important;
 }
+
+.carousel-center {
+    bottom: 10% !important;
+    opacity: 0.9 !important;
+}
+
+.carousel-text {
+    opacity: 0.9 !important;
+}

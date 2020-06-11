@@ -29,14 +29,32 @@
         <div class="carousel-inner">
             <div class="carousel-item active">
                 <img class="d-flex align-items-center justify-content-center img-cover vh-100 w-100" src="assets/landing.jpg">
+                <div class="carousel-caption bg-dark shadow rounded carousel-center">
+                    <div class="col">
+                        <h1>Preferred Bank of Royalty</h1>
+                        <p>Serving Nigerian Princes since 2020</p>
+                    </div>
+                </div>
             </div>
             <div class="carousel-item">
                 <img class="d-flex align-items-center justify-content-center img-cover vh-100 w-100" src="assets/landing-2.jpg">
+                <div class="carousel-caption bg-dark shadow rounded carousel-center">
+                    <div class="col">
+                        <h1>Now Accepting Toilet Paper</h1>
+                        <p>Contact us for more information</p>
+                    </div>
+                </div>
             </div>
             <div class="carousel-item">
                 <img class="d-flex align-items-center justify-content-center img-cover vh-100 w-100" src="assets/landing-3.jpg">
-            </div>
+                <div class="carousel-caption bg-dark shadow rounded carousel-center">
+                    <div class="col">
+                        <h1>Bitcoin Transfers Coming Soon</h1>
+                        <p>Check back often for updates!</p>
+                    </div>
+                </div>
         </div>
+    </div>
     </div>
     <nav class="navbar fixed-bottom navbar-light bg-light">
         <div class="mr-auto">
