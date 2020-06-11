@@ -28,7 +28,7 @@
     <div id="" class="carousel slide carousel-fade" data-interval="5000" data-ride="carousel">
         <div class="carousel-inner">
             <div class="carousel-item active">
-                <img class="d-flex align-items-center justify-content-center img-cover vh-100 w-100" src="assets/landing.jpg">
+                <img class="d-flex align-items-center justify-content-center img-cover vh-100 w-100" src="assets/landing.jpg" style=" object-position: 0 0;">
                 <div class="carousel-caption bg-dark shadow rounded carousel-center">
                     <div class="col">
                         <h1>Preferred Bank of Royalty</h1>
