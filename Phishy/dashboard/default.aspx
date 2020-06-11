@@ -3,6 +3,31 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="HeadContent" runat="server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="BodyContent" runat="server">
+    <!-- Modal -->
+    <div class="modal fade" id="aboutModal" data-backdrop="static" data-keyboard="false" tabindex="-1" role="dialog" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title" id="staticBackdropLabel">About Phishy Bank</h4>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <h5>Created by</h5>
+                    <p class="text-monospace">
+                        10200376B Seah Shih Wei Gerome
+                        <br />
+                        S01623826 Soh Thiam Hing
+                    </p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
     <nav class="navbar fixed-top navbar-expand-lg navbar-dark bg-primary">
         <a class="navbar-brand" href="#">
             <div class="row mx-auto">
@@ -21,6 +46,9 @@
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="fund_transfer.aspx">Transfer</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" data-toggle="modal" data-target="#aboutModal" href="">About</a>
                     </li>
                 </ul>
             </div>
@@ -68,20 +96,20 @@
                 ajax: {
                     url: "transactions.ashx",
                     //dataSrc: (json) => {
-                        //var returnData = new Array();
-                        //for (var i = 0; i < json.data.length; i++) {
-                        //    var transaction = json.data[i];
-                        //    returnData.push({
-                        //        updated_at: transaction.updated_at,
-                        //        amount: transaction.amount,
-                        //        currency: transaction.currency,
-                        //        receiver: transaction.receiver,
-                        //        subject: transaction.subject
-                        //    })
-                        //}
-                        //console.log("returnData is");
-                        //console.log(returnData);
-                        //return returnData;
+                    //var returnData = new Array();
+                    //for (var i = 0; i < json.data.length; i++) {
+                    //    var transaction = json.data[i];
+                    //    returnData.push({
+                    //        updated_at: transaction.updated_at,
+                    //        amount: transaction.amount,
+                    //        currency: transaction.currency,
+                    //        receiver: transaction.receiver,
+                    //        subject: transaction.subject
+                    //    })
+                    //}
+                    //console.log("returnData is");
+                    //console.log(returnData);
+                    //return returnData;
                     //}
                 },
                 columns: [
