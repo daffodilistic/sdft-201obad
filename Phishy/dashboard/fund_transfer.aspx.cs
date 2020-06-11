@@ -12,7 +12,7 @@ using System.Diagnostics;
 using FintechAPI;
 using System.Globalization;
 
-namespace Phishy
+namespace Phishy.Dashboard
 {
     public partial class FundTransfer : System.Web.UI.Page
     {
@@ -50,13 +50,14 @@ namespace Phishy
                 lblState.Text = "FAILED";
             }
 
-            tblTxnSummary.Visible = true;
-            tblTxnDetail.Visible = false;
+            transferResultContainer.Visible = true;
+            transferContainer.Visible = false;
         }
 
         protected void btnBack_Click(object sender, EventArgs e)
         {
-            Response.Redirect("Main.aspx");
+            Response.Redirect("default.aspx", false);
+            Context.ApplicationInstance.CompleteRequest();
         }
     }
 }

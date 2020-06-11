@@ -11,9 +11,9 @@ using System.Threading.Tasks;
 using System.Globalization;
 using DotNetOpenAuth.OAuth.ChannelElements;
 
-namespace Phishy
+namespace Phishy.Dashboard
 {
-    public partial class Main : System.Web.UI.Page
+    public partial class Default : System.Web.UI.Page
     {
         protected async void Page_Load(object sender, EventArgs e)
         {
@@ -29,9 +29,6 @@ namespace Phishy
                 lblUserFirstName.Text = CultureInfo.CurrentCulture.TextInfo.ToTitleCase(customers.data[0].first_name.ToLower());
                 lblAccountId.Text = accounts.data[0].id;
                 lblAccountBalance.Text = formattedAccountBalance;
-
-                string output = "INSERT TRANSACTIONS HERE";
-                lblValue.Text = output;
             }
             else
             {

@@ -1,4 +1,4 @@
-﻿<%@ Page Language="C#" Async="true" MasterPageFile="~/templates/DefaultPage.Master" AutoEventWireup="true" CodeBehind="default.aspx.cs" Inherits="Phishy.Main" %>
+﻿<%@ Page Language="C#" Async="true" MasterPageFile="~/templates/DefaultPage.Master" AutoEventWireup="true" CodeBehind="default.aspx.cs" Inherits="Phishy.Dashboard.Default" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="HeadContent" runat="server">
 </asp:Content>
@@ -20,7 +20,7 @@
                         <a class="nav-link" href="./"><b>Home</b></a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="FundTransfer.aspx">Transfer</a>
+                        <a class="nav-link" href="fund_transfer.aspx">Transfer</a>
                     </li>
                 </ul>
             </div>
@@ -52,7 +52,6 @@
         <hr>
         <table id="transactionsTable" class="table table-striped table-bordered" style="width: 100%">
         </table>
-        <asp:Label ID="lblValue" runat="server" Text=""></asp:Label>
     </div>
     <script type="text/javascript">
         jQuery(document).ready(($) => {
@@ -105,7 +104,7 @@
                                 currency: row.currency,
                             });
 
-                            return formatter.format(data);
+                            return formatter.format(data / 100);
                         }
                     },
                     {
@@ -113,7 +112,7 @@
                         data: "receiver",
                         render: (data, type, row) => {
                             if (validate.single(data, { email: true }) == undefined) {
-                                return "<a href='mailto:'" + data + ">" + data + "</a>";
+                                return "<a href='mailto:" + data + "'>" + data + "</a>";
                             } else {
                                 return row.recipient_name;
                             }

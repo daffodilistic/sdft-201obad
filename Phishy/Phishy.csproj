@@ -190,7 +190,7 @@
     <Content Include="assets\landing.jpg" />
     <Content Include="assets\thumbnail.png" />
     <Content Include="assets\favicon.png" />
-    <Content Include="dashboard\FundTransfer.aspx" />
+    <Content Include="dashboard\fund_transfer.aspx" />
     <Content Include="assets\brand.svg" />
     <Content Include="dashboard\default.aspx" />
     <Content Include="assets\styles.css" />
@@ -220,12 +220,12 @@
     <Compile Include="default.aspx.designer.cs">
       <DependentUpon>default.aspx</DependentUpon>
     </Compile>
-    <Compile Include="dashboard\FundTransfer.aspx.cs">
-      <DependentUpon>FundTransfer.aspx</DependentUpon>
+    <Compile Include="dashboard\fund_transfer.aspx.cs">
+      <DependentUpon>fund_transfer.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="dashboard\FundTransfer.aspx.designer.cs">
-      <DependentUpon>FundTransfer.aspx</DependentUpon>
+    <Compile Include="dashboard\fund_transfer.aspx.designer.cs">
+      <DependentUpon>fund_transfer.aspx</DependentUpon>
     </Compile>
     <Compile Include="classes\InternalTransfer.cs" />
     <Compile Include="dashboard\default.aspx.cs">
@@ -250,11 +250,10 @@
     <Compile Include="dashboard\transactions.ashx.cs">
       <DependentUpon>transactions.ashx</DependentUpon>
     </Compile>
-    <Compile Include="TransactionRecordContainer.cs" />
+    <Compile Include="classes\TransactionRecordContainer.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="logout.ashx" />
-    <Content Include="dashboard\sample_txns.json" />
     <None Include="packages.config" />
     <None Include="Properties\PublishProfiles\phishybank - Web Deploy.pubxml" />
     <Content Include="templates\DefaultPage.Master" />

@@ -7,7 +7,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace Phishy
+namespace Phishy.Dashboard
 {
 
 
@@ -15,22 +15,31 @@ namespace Phishy
     {
 
         /// <summary>
-        /// form1 control.
+        /// lblUserName control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlForm form1;
+        protected global::System.Web.UI.WebControls.Label lblUserName;
 
         /// <summary>
-        /// tblTxnDetail control.
+        /// fundTransferForm control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlTable tblTxnDetail;
+        protected global::System.Web.UI.HtmlControls.HtmlForm fundTransferForm;
+
+        /// <summary>
+        /// transferContainer control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl transferContainer;
 
         /// <summary>
         /// txtTransferEmail control.
@@ -69,13 +78,13 @@ namespace Phishy
         protected global::System.Web.UI.WebControls.Button btnTransfer;
 
         /// <summary>
-        /// tblTxnSummary control.
+        /// transferResultContainer control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlTable tblTxnSummary;
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl transferResultContainer;
 
         /// <summary>
         /// lblSender control.
@@ -96,15 +105,6 @@ namespace Phishy
         protected global::System.Web.UI.WebControls.Label lblReciever;
 
         /// <summary>
-        /// lblSubject control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblSubject;
-
-        /// <summary>
         /// lblAmount control.
         /// </summary>
         /// <remarks>
@@ -112,6 +112,15 @@ namespace Phishy
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Label lblAmount;
+
+        /// <summary>
+        /// lblSubject control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblSubject;
 
         /// <summary>
         /// lblState control.
