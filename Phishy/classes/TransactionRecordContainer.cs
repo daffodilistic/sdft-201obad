@@ -6,7 +6,7 @@ using System.Web;
 
 namespace Phishy
 {
-    public class TransactionCollection : AccountCollection { }
+
     public class TransactionRecordContainer
     {
         public TransactionRecordContainer() { }
