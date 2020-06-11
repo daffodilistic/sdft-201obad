@@ -38,8 +38,8 @@
         </div>
     </nav>
     <div class="container pt-body">
-        <h1><b>Hello,
-            <asp:Label ID="lblUserFirstName" runat="server" Text="John Doe"></asp:Label>!</b></h1>
+        <h1 class="font-weight-bold">Hello,
+            <asp:Label ID="lblUserFirstName" runat="server" Text="John Doe" CssClass="text-capitalize"></asp:Label>!</h1>
         <br>
         <h3>Your Account Summary</h3>
         <hr>
