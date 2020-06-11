@@ -27,6 +27,10 @@ namespace Phishy
             else
             {
                 string redirectUri = HttpContext.Current.Request.Url.GetLeftPart(UriPartial.Authority) + "/callback.aspx";
+                if (HttpContext.Current.Request.Headers["X-Forwarded-Host"] != null)
+                {
+                    redirectUri = HttpContext.Current.Request.Url.Scheme + "://" + HttpContext.Current.Request.Headers["X-Forwarded-Host"] + "/callback.aspx";
+                }
 
                 oauthContainer.client_id = "911de6ba62ca08d8";
                 oauthContainer.client_secret = "bfc36cdf50727803bf8bf8677fd0d1ac";

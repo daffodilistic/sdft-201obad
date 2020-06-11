@@ -204,6 +204,9 @@
     <Compile Include="callback.aspx.designer.cs">
       <DependentUpon>callback.aspx</DependentUpon>
     </Compile>
+    <Compile Include="check_headers.ashx.cs">
+      <DependentUpon>check_headers.ashx</DependentUpon>
+    </Compile>
     <Compile Include="classes\PhishyAPI.cs" />
     <Compile Include="classes\TransactionRecord.cs" />
     <Compile Include="login.aspx.cs">
@@ -254,6 +257,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="logout.ashx" />
+    <Content Include="check_headers.ashx" />
     <None Include="packages.config" />
     <None Include="Properties\PublishProfiles\phishybank - Web Deploy.pubxml" />
     <Content Include="templates\DefaultPage.Master" />
