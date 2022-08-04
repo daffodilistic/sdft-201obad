@@ -5,7 +5,7 @@ using PhishyBank.Models;
 namespace PhishyBank.Data;
 public class BankContext : DbContext
 {
-    public DbSet<User> Students { get; init; } = null!;
+    public DbSet<User> Users { get; init; } = null!;
 
     public BankContext(DbContextOptions<BankContext> options)
         : base(options)
