@@ -1,5 +1,6 @@
 using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Components.Web;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Pomelo.EntityFrameworkCore.MySql;
 using PhishyBank.Data;
@@ -9,12 +10,30 @@ var _connectionString = builder.Configuration.GetConnectionString("PhishyBankDat
 // Add services to the container.
 builder.Services.AddRazorPages();
 builder.Services.AddServerSideBlazor();
-builder.Services.AddDbContext<BankContext>(options =>
+builder.Services.AddDbContextFactory<BankContext>(options =>
   options.UseMySql(_connectionString, ServerVersion.AutoDetect(_connectionString)
 ));
 // builder.Services.AddDbContext<BankContext>();
 builder.Services.AddSingleton<WeatherForecastService>();
 builder.Services.AddDatabaseDeveloperPageExceptionFilter();
+builder.Services.AddHttpClient();
+builder.Services.AddControllersWithViews();
+// builder.Services.AddControllersWithViews()
+// .ConfigureApiBehaviorOptions(options =>
+// {
+//     options.InvalidModelStateResponseFactory = context =>
+//     {
+//         if (context.HttpContext.Request.Path == "/LoginValidation")
+//         {
+//             return new BadRequestObjectResult(context.ModelState);
+//         }
+//         else
+//         {
+//             return new BadRequestObjectResult(
+//                 new ValidationProblemDetails(context.ModelState));
+//         }
+//     };
+// });
 
 var app = builder.Build();
 
@@ -41,6 +60,10 @@ using (var scope = app.Services.CreateScope())
 app.UseStaticFiles();
 
 app.UseRouting();
+app.UseEndpoints(endpoints =>
+{
+    endpoints.MapControllers();
+});
 
 app.MapBlazorHub();
 app.MapFallbackToPage("/_Host");

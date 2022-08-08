@@ -1,17 +1,81 @@
 ﻿@page "/login"
+@using System.Text.Json
+@using System.Net
+@using PhishyBank.Models
+@using Microsoft.Extensions.Logging
+@inject HttpClient Http
+@inject ILogger<Login> Logger
+@inject NavigationManager NavManager
 
 <PageTitle>@PhishyLayoutComponentBase.getPageTitle("Login")</PageTitle>
 
 <div class="login pt-body container">
-    <form>
+    <EditForm Model="@loginUser" OnValidSubmit="@HandleValidSubmit">
         <div class="form-group">
             <label for="user-email">Email address</label>
-            <input type="email" class="form-control" id="user-email">
+            <InputText @bind-Value="loginUser.Email" class="form-control" type="email"/>
         </div>
         <div class="form-group">
             <label for="user-password">Password</label>
-            <input type="password" class="form-control" id="user-password">
+            <InputText @bind-Value="loginUser.Password" class="form-control" type="password"/>
         </div>
         <button type="submit" class="btn btn-primary">Submit</button>
-    </form>
+    </EditForm>
 </div>
+
+@code {
+    // private bool disabled;
+    // private string? message;
+    // private string? messageStyles = "visibility:hidden";
+    // private CustomValidation? customValidation;
+    private User loginUser = new User();
+
+    private async Task HandleValidSubmit(EditContext editContext)
+    {
+        Console.WriteLine("HandleValidSubmit");
+        
+        // customValidation?.ClearErrors();
+
+        try
+        {
+            var endpoint = new Uri(
+            new Uri(NavManager.BaseUri), // base URI from current context
+            "/api/LoginValidation" // address relative to the base URI, use / if needed
+            ).ToString();
+
+            Console.WriteLine("Endpoint is {0}", endpoint);
+            Console.WriteLine("Model is {0}", JsonSerializer.Serialize(editContext.Model as User));
+
+            var response = await Http.PostAsJsonAsync<User>(
+            endpoint, (User)editContext.Model);
+
+            var errors = await response.Content
+            .ReadFromJsonAsync<Dictionary<string, List<string>>>();
+
+            if (response.StatusCode == HttpStatusCode.BadRequest &&
+            errors!.Any())
+            {
+                // customValidation?.DisplayErrors(errors);
+            }
+            else if (!response.IsSuccessStatusCode)
+            {
+                throw new HttpRequestException(
+                $"Validation failed. Status Code: {response.StatusCode}");
+            }
+            else
+            {
+                NavManager.NavigateTo("https://www.google.com");
+                // disabled = true;
+                // messageStyles = "color:green";
+                // message = "The form has been processed.";
+            }
+        }
+        catch (Exception ex)
+        {
+            Logger.LogError("Form processing error: {Message}", ex.Message);
+            // disabled = true;
+            // messageStyles = "color:red";
+            // message = "There was an error processing the form.";
+        }
+    }
+}
