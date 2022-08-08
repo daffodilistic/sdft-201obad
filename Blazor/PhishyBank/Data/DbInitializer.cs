@@ -14,7 +14,7 @@ namespace PhishyBank.Data
 
             var users = new User[]
             {
-                new User{Username="daffodilistic",Password="daffo123"},
+                new User{Email="daffodilistic@gmail.com",Password="daffo123"},
             };
 
             context.Users.AddRange(users);
