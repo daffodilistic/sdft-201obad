@@ -2,7 +2,11 @@
 @using System.Text.Json
 @using System.Net
 @using PhishyBank.Models
+@using PhishyBank.Data
 @using Microsoft.Extensions.Logging
+@using Microsoft.AspNetCore.Components.Server.ProtectedBrowserStorage
+@using System.IdentityModel.Tokens.Jwt;
+@inject ProtectedSessionStorage ProtectedSessionStore
 @inject HttpClient Http
 @inject ILogger<Login> Logger
 @inject NavigationManager NavManager
@@ -49,12 +53,10 @@
             var response = await Http.PostAsJsonAsync<User>(
             endpoint, (User)editContext.Model);
 
-            var errors = await response.Content
-            .ReadFromJsonAsync<Dictionary<string, List<string>>>();
-
-            if (response.StatusCode == HttpStatusCode.BadRequest &&
-            errors!.Any())
+            if (response.StatusCode == HttpStatusCode.BadRequest)
             {
+                //var errors = await response.Content
+                //.ReadFromJsonAsync<Dictionary<string, List<string>>>();
                 // customValidation?.DisplayErrors(errors);
             }
             else if (!response.IsSuccessStatusCode)
@@ -64,7 +66,13 @@
             }
             else
             {
-                NavManager.NavigateTo("/account/");
+                Console.WriteLine("SUCCESS!");
+                LoginResult? result = await response.Content.ReadFromJsonAsync<LoginResult>();
+				if (result != null && result.Success)
+				{
+                    await ProtectedSessionStore.SetAsync("jwtToken", result.JwtToken!);
+                    NavManager.NavigateTo("/account/");
+                }
                 // NavManager.NavigateTo("https://www.google.com");
                 // disabled = true;
                 // messageStyles = "color:green";
