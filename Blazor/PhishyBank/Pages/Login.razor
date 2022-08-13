@@ -32,7 +32,7 @@
 
     private async Task HandleValidSubmit(EditContext editContext)
     {
-        Console.WriteLine("HandleValidSubmit");
+        // Console.WriteLine("HandleValidSubmit");
         
         // customValidation?.ClearErrors();
 
@@ -43,8 +43,8 @@
             "/api/LoginValidation" // address relative to the base URI, use / if needed
             ).ToString();
 
-            Console.WriteLine("Endpoint is {0}", endpoint);
-            Console.WriteLine("Model is {0}", JsonSerializer.Serialize(editContext.Model as User));
+            // Console.WriteLine("Endpoint is {0}", endpoint);
+            // Console.WriteLine("Model is {0}", JsonSerializer.Serialize(editContext.Model as User));
 
             var response = await Http.PostAsJsonAsync<User>(
             endpoint, (User)editContext.Model);
@@ -64,7 +64,8 @@
             }
             else
             {
-                NavManager.NavigateTo("https://www.google.com");
+                NavManager.NavigateTo("/account/");
+                // NavManager.NavigateTo("https://www.google.com");
                 // disabled = true;
                 // messageStyles = "color:green";
                 // message = "The form has been processed.";

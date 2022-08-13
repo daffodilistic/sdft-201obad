@@ -4,7 +4,7 @@ namespace PhishyBank
 {
     public class PhishyLayoutComponentBase : LayoutComponentBase
     {
-        public static string getPageTitle(string title = null)
+        public static string getPageTitle(string? title = null)
         {
             if (title == null)
             {

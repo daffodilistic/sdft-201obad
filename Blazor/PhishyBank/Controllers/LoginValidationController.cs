@@ -1,8 +1,11 @@
+using Microsoft.IdentityModel.Tokens;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.AspNetCore.Mvc;
 using PhishyBank.Models;
 using PhishyBank.Data;
 using System.Text.Json;
+using System.IdentityModel.Tokens.Jwt;
+using System.Security.Claims;
 
 namespace PhishyBank.Server.Controllers
 {
@@ -32,7 +35,7 @@ namespace PhishyBank.Server.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> Post(User loginUser)
+        public async Task<ActionResult<LoginResult>> Post(User loginUser)
         {
             // HttpContext.VerifyUserHasAnyAcceptedScope(scopeRequiredByApi);
             // Console.WriteLine("Processing POST");
@@ -63,11 +66,16 @@ namespace PhishyBank.Server.Controllers
                             logger.LogWarning("[{0}] User not found", this.GetType().Name);
                             ModelState.AddModelError("Validation",
                                 "Invalid email and/or password");
+                            return Ok(ModelState);
                         }
                         else
                         {
                             logger.LogInformation("[{0}] User found", this.GetType().Name);
-                            return Ok(ModelState);
+                            return Ok(new LoginResult
+                            {
+                                Success = true,
+                                JwtToken = CreateJWT(user.First())
+                            });
                         }
                     }
                 }
@@ -78,6 +86,22 @@ namespace PhishyBank.Server.Controllers
             }
 
             return BadRequest(ModelState);
+        }
+        private string CreateJWT(User user)
+        {
+            var secretkey = new SymmetricSecurityKey(System.Text.Encoding.UTF8.GetBytes("THIS IS THE SECRET KEY")); // NOTE: SAME KEY AS USED IN Program.cs FILE
+            var credentials = new SigningCredentials(secretkey, SecurityAlgorithms.HmacSha256);
+
+            var claims = new[] // NOTE: could also use List<Claim> here
+            {
+                new Claim(ClaimTypes.Name, user.Email), // NOTE: this will be the "User.Identity.Name" value
+				new Claim(JwtRegisteredClaimNames.Sub, user.Email),
+                new Claim(JwtRegisteredClaimNames.Email, user.Email),
+                new Claim(JwtRegisteredClaimNames.Jti, user.ID.ToString()) // NOTE: this could a unique ID assigned to the user by a database
+			};
+
+            var token = new JwtSecurityToken(issuer: "domain.com", audience: "domain.com", claims: claims, expires: DateTime.Now.AddMinutes(60), signingCredentials: credentials);
+            return new JwtSecurityTokenHandler().WriteToken(token);
         }
     }
 }
