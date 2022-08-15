@@ -13,6 +13,7 @@ builder.Services.AddServerSideBlazor();
 builder.Services.AddDbContextFactory<BankContext>(options =>
   options
     .UseMySql(_connectionString, ServerVersion.AutoDetect(_connectionString))
+    .UseSnakeCaseNamingConvention()
 );
 builder.Services.AddSingleton<WeatherForecastService>();
 builder.Services.AddDatabaseDeveloperPageExceptionFilter();
