@@ -8,12 +8,12 @@ namespace PhishyBank.Models
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int Id { get; set; }
         public int UserId { get; set; }
-        public string AccountIdSource { get; set; }
-        public string AccountIdTarget { get; set; }
+        public string AccountIdSource { get; set; } = null!;
+        public string AccountIdTarget { get; set; } = null!;
         public uint Amount { get; set; }
-        public string Currency { get; set; }
+        public string Currency { get; set; } = null!;
         public string? Remarks { get; set; }
-        public string State { get; set; }
+        public string State { get; set; } = null!;
         [DefaultValue("CURRENT_TIMESTAMP")]
         [DatabaseGenerated(DatabaseGeneratedOption.Computed)]
         public DateTime DateCreated { get; set; }
