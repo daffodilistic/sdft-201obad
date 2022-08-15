@@ -10,11 +10,6 @@ public class BankContext : DbContext
     public BankContext(DbContextOptions<BankContext> options)
         : base(options)
     {
+        // DO NOT DELETE THIS BLANK CONSTRUCTOR, OR ELSE .NET WILL COMPLAIN
     }
-
-    protected override void OnModelCreating(ModelBuilder modelBuilder)
-    {
-        modelBuilder.Entity<User>().ToTable("User");
-    }
-
 }
