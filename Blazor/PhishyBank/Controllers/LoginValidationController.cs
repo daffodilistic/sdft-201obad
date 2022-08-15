@@ -97,7 +97,7 @@ namespace PhishyBank.Server.Controllers
                 new Claim(ClaimTypes.Name, user.Email), // NOTE: this will be the "User.Identity.Name" value
 				new Claim(JwtRegisteredClaimNames.Sub, user.Email),
                 new Claim(JwtRegisteredClaimNames.Email, user.Email),
-                new Claim(JwtRegisteredClaimNames.Jti, user.ID.ToString()) // NOTE: this could a unique ID assigned to the user by a database
+                new Claim(JwtRegisteredClaimNames.Jti, user.Id.ToString()) // NOTE: this could a unique ID assigned to the user by a database
 			};
 
             var token = new JwtSecurityToken(issuer: "domain.com", audience: "domain.com", claims: claims, expires: DateTime.Now.AddMinutes(60), signingCredentials: credentials);
