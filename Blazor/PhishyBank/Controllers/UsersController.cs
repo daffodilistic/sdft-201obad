@@ -16,23 +16,33 @@ namespace PhishyBank.Server.Controllers
     {
         private readonly ILogger<UsersController> logger;
         // private readonly IServiceProvider provider;
-        private readonly IDbContextFactory<BankContext> contextFactory;
+        private readonly BankContext context;
 
         public UsersController(ILogger<UsersController> logger, IDbContextFactory<BankContext> contextFactory)
         {
             // this.provider = provider;
             this.logger = logger;
-            this.contextFactory = contextFactory;
+            this.context = contextFactory.CreateDbContext();
         }
 
         // GET: api/users
         [HttpGet]
         public async Task<ActionResult<IEnumerable<User>>> GetUsers()
         {
-            using (var context = contextFactory.CreateDbContext())
+            return await context.Users.ToListAsync();
+        }
+
+        [HttpGet("{id}")]
+        public async Task<ActionResult<User>> GetUser(int id)
+        {
+            var user = await context.Users.FindAsync(id);
+
+            if (user == null)
             {
-                return await context.Users.ToListAsync();
+                return NotFound();
             }
+
+            return user;
         }
     }
 }
