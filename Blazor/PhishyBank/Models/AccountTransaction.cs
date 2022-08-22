@@ -15,10 +15,8 @@ namespace PhishyBank.Models
         public string? Remarks { get; set; }
         public string State { get; set; } = null!;
         [DefaultValue("CURRENT_TIMESTAMP")]
-        [DatabaseGenerated(DatabaseGeneratedOption.Computed)]
         public DateTime DateCreated { get; set; }
         [DefaultValue("CURRENT_TIMESTAMP")]
-        [DatabaseGenerated(DatabaseGeneratedOption.Computed)]
         public DateTime DateUpdated { get; set; }
         [Column(TypeName = "json")]
         public string? Metadata { get; set; }
