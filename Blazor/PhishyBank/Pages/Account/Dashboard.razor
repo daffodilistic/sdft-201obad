@@ -1,12 +1,18 @@
 @page "/account/"
+
 @using Microsoft.AspNetCore.Components.Server.ProtectedBrowserStorage
-@using System.IdentityModel.Tokens.Jwt;
+@using PhishyBank.Models
+@using System.Text.Json
+@using System.IdentityModel.Tokens.Jwt
+
 @inject ProtectedSessionStorage ProtectedSessionStore
+@inject NavigationManager NavManager
+@inject HttpClient Http
 
 <PageTitle>@PhishyLayoutComponentBase.getPageTitle("Dashboard")</PageTitle>
 
 <div class="container pt-body">
-    <h1 class="font-weight-bold">Hello, @username
+    <h1 class="font-weight-bold">Hello, @currentUser.Name
     </h1>
     <br>
     <h3>Your Account Summary</h3>
@@ -96,13 +102,53 @@
     </script> *@
 
 @code {
-    private string username;
-
+    private User currentUser = new User
+    {
+        Id = -1,
+        Email = "",
+        Password = "",
+        Name = ""
+    };
     protected override async Task OnInitializedAsync()
     {
-        string token = (await ProtectedSessionStore.GetAsync<string>("jwtToken")).Value ?? "";
-        JwtSecurityToken jwtToken = new JwtSecurityTokenHandler().ReadToken(token) as JwtSecurityToken;
-        Console.WriteLine(jwtToken.Subject);
-        username = jwtToken.Subject;
+        await Task.Delay(1);
     }
+
+    protected override async Task OnAfterRenderAsync(bool firstRender)
+    {
+        // NOTE firstRender is true on page first load or refresh
+        if (firstRender)
+        {
+            string? token = (await ProtectedSessionStore.GetAsync<string>("jwtToken")).Value;
+            JwtSecurityToken? jwtToken = new JwtSecurityTokenHandler().ReadToken(token) as JwtSecurityToken;
+            if (jwtToken != null)
+            {
+                // Console.WriteLine(JsonSerializer.Serialize(jwtToken));
+
+                var endpoint = new Uri(
+                new Uri(NavManager.BaseUri), // base URI from current context
+                $"/api/users/{jwtToken.Subject}" // address relative to the base URI, use / if needed
+                ).ToString();
+                var response = await Http.GetAsync(endpoint);
+
+                // var test = await response.Content.ReadAsStringAsync();
+                var contentStream = await response.Content.ReadAsStreamAsync();
+                var deserializerOptions = new JsonSerializerOptions
+                {
+                    PropertyNameCaseInsensitive = true
+                };
+                var loggedInUser = await JsonSerializer.DeserializeAsync
+                <User>(contentStream, deserializerOptions);
+
+                if (loggedInUser != null)
+                {
+                    currentUser = loggedInUser;
+                    this.StateHasChanged();
+                }
+
+                //Console.WriteLine(JsonSerializer.Serialize(currentUser));
+            }
+        }
+    }
+
 }

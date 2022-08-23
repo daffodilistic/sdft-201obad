@@ -1,11 +1,13 @@
 ﻿@page "/login"
+
 @using System.Text.Json
 @using System.Net
 @using PhishyBank.Models
 @using PhishyBank.Data
 @using Microsoft.Extensions.Logging
 @using Microsoft.AspNetCore.Components.Server.ProtectedBrowserStorage
-@using System.IdentityModel.Tokens.Jwt;
+@using System.IdentityModel.Tokens.Jwt
+
 @inject ProtectedSessionStorage ProtectedSessionStore
 @inject HttpClient Http
 @inject ILogger<Login> Logger
