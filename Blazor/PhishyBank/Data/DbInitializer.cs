@@ -48,8 +48,8 @@ namespace PhishyBank.Data
                         Currency="SGD",
                         Remarks="Initial deposit",
                         State="completed",
-                        DateCreated=new DateTime(2022, 08, 01, 10, 30, 50),
-                        DateUpdated=new DateTime(2022, 08, 01, 10, 30, 50),
+                        DateCreatedUtc=new DateTime(2022, 08, 01, 10, 30, 50, DateTimeKind.Local).ToUniversalTime(),
+                        DateUpdatedUtc=new DateTime(2022, 08, 01, 10, 30, 50, DateTimeKind.Local).ToUniversalTime(),
                         Metadata=null},
                     new AccountTransaction{
                         UserId=1,
@@ -58,8 +58,8 @@ namespace PhishyBank.Data
                         Amount=1000,
                         Currency="SGD",
                         Remarks="Buy TOTO $5 big $5 small",
-                        DateCreated=new DateTime(2022, 08, 01, 10, 32, 04),
-                        DateUpdated=new DateTime(2022, 08, 01, 10, 32, 04),
+                        DateCreatedUtc=new DateTime(2022, 08, 01, 10, 32, 04, DateTimeKind.Local).ToUniversalTime(),
+                        DateUpdatedUtc=new DateTime(2022, 08, 01, 10, 32, 04, DateTimeKind.Local).ToUniversalTime(),
                         State="completed",
                         Metadata=null}
                 };

@@ -2,7 +2,6 @@ using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Components.Web;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
-using Pomelo.EntityFrameworkCore.MySql;
 using PhishyBank.Data;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -12,7 +11,7 @@ builder.Services.AddRazorPages();
 builder.Services.AddServerSideBlazor();
 builder.Services.AddDbContextFactory<BankContext>(options =>
   options
-    .UseMySql(_connectionString, ServerVersion.AutoDetect(_connectionString))
+    .UseNpgsql(_connectionString)
     .UseSnakeCaseNamingConvention()
 );
 builder.Services.AddSingleton<WeatherForecastService>();

@@ -1,5 +1,4 @@
 using Microsoft.EntityFrameworkCore;
-using Pomelo.EntityFrameworkCore.MySql;
 using PhishyBank.Models;
 
 namespace PhishyBank.Data;

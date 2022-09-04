@@ -15,9 +15,9 @@ namespace PhishyBank.Models
         public string? Remarks { get; set; }
         public string State { get; set; } = null!;
         [DefaultValue("CURRENT_TIMESTAMP")]
-        public DateTime DateCreated { get; set; }
+        public DateTimeOffset DateCreatedUtc { get; set; }
         [DefaultValue("CURRENT_TIMESTAMP")]
-        public DateTime DateUpdated { get; set; }
+        public DateTimeOffset DateUpdatedUtc { get; set; }
         [Column(TypeName = "json")]
         public string? Metadata { get; set; }
     }
