@@ -18,7 +18,7 @@
     <h3>Your Account Summary</h3>
     <hr>
     <h5>Account No. <b>
-            @* <asp:Label ID="lblAccountId" runat="server" Text="62353535"></asp:Label> *@
+            @getAccountNumber()
         </b></h5>
     <h4>Balance Available: <b>
             @* <asp:Label ID="lblAccountBalance" runat="server" Text="$18.88"></asp:Label> *@
@@ -109,6 +109,13 @@
         Password = "",
         Name = ""
     };
+    private Account userAccount = new Account
+    {
+        Id = -1,
+        UserId = -1,
+        Type = "Unknown",
+        DateCreatedUtc = DateTime.UtcNow
+    };
 
     protected override async Task OnInitializedAsync()
     {
@@ -126,6 +133,7 @@
             {
                 // Console.WriteLine(JsonSerializer.Serialize(jwtToken));
                 getUserData(jwtToken);
+                getAccounts(jwtToken);
             }
         }
     }
@@ -155,4 +163,39 @@
         }
     }
 
+    protected async void getAccounts(JwtSecurityToken jwtToken)
+    {
+        var endpoint = new Uri(
+        new Uri(NavManager.BaseUri), // base URI from current context
+        $"/api/users/{jwtToken.Subject}/accounts" // address relative to the base URI, use / if needed
+        ).ToString();
+        var response = await Http.GetAsync(endpoint);
+
+        // var test = await response.Content.ReadAsStringAsync();
+        var contentStream = await response.Content.ReadAsStreamAsync();
+        var deserializerOptions = new JsonSerializerOptions
+        {
+            PropertyNameCaseInsensitive = true
+        };
+        var accounts = await JsonSerializer.DeserializeAsync
+        <List<Account>>(contentStream, deserializerOptions);
+        // Console.WriteLine(JsonSerializer.Serialize(accounts));
+
+        if (accounts != null)
+        {
+            // NOTE Assuming one user has only one account, for now...
+            userAccount = accounts[0];
+            this.StateHasChanged();
+        }
+    }
+
+    private string getAccountNumber()
+    {
+        if (userAccount.Id == -1) return "";
+
+        // Random _random = new Random();
+        // return String.Format("1337-{0,8:00000000}-2022", _random.NextDouble() * Math.Pow(10, 8));
+
+        return String.Format("1337-{0,8:00000000}-2022", userAccount.Id);
+    }
 }
