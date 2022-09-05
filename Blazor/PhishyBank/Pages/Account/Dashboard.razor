@@ -125,30 +125,33 @@
             if (jwtToken != null)
             {
                 // Console.WriteLine(JsonSerializer.Serialize(jwtToken));
-
-                var endpoint = new Uri(
-                new Uri(NavManager.BaseUri), // base URI from current context
-                $"/api/users/{jwtToken.Subject}" // address relative to the base URI, use / if needed
-                ).ToString();
-                var response = await Http.GetAsync(endpoint);
-
-                // var test = await response.Content.ReadAsStringAsync();
-                var contentStream = await response.Content.ReadAsStreamAsync();
-                var deserializerOptions = new JsonSerializerOptions
-                {
-                    PropertyNameCaseInsensitive = true
-                };
-                var loggedInUser = await JsonSerializer.DeserializeAsync
-                <User>(contentStream, deserializerOptions);
-
-                if (loggedInUser != null)
-                {
-                    currentUser = loggedInUser;
-                    this.StateHasChanged();
-                }
-
-                //Console.WriteLine(JsonSerializer.Serialize(currentUser));
+                getUserData(jwtToken);
             }
+        }
+    }
+
+    protected async void getUserData(JwtSecurityToken jwtToken)
+    {
+        var endpoint = new Uri(
+        new Uri(NavManager.BaseUri), // base URI from current context
+        $"/api/users/{jwtToken.Subject}" // address relative to the base URI, use / if needed
+        ).ToString();
+        var response = await Http.GetAsync(endpoint);
+
+        // var test = await response.Content.ReadAsStringAsync();
+        var contentStream = await response.Content.ReadAsStreamAsync();
+        var deserializerOptions = new JsonSerializerOptions
+        {
+            PropertyNameCaseInsensitive = true
+        };
+        var loggedInUser = await JsonSerializer.DeserializeAsync
+        <User>(contentStream, deserializerOptions);
+
+        if (loggedInUser != null)
+        {
+            currentUser = loggedInUser;
+            //Console.WriteLine(JsonSerializer.Serialize(currentUser));
+            this.StateHasChanged();
         }
     }
 
