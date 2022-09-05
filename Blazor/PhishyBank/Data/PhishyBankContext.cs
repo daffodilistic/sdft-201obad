@@ -6,6 +6,7 @@ public class BankContext : DbContext
 {
     public DbSet<User> Users { get; init; } = null!;
     public DbSet<AccountTransaction> AccountTransactions { get; init; } = null!;
+    public DbSet<Account> Accounts { get; init; } = null!;
 
     public BankContext(DbContextOptions<BankContext> options)
         : base(options)

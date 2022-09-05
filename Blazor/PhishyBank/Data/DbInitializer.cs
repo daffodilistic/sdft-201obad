@@ -7,6 +7,7 @@ namespace PhishyBank.Data
         public static void Initialize(BankContext context)
         {
             SeedUsers(context);
+            SeedAccounts(context);
             SeedTransactions(context);
             context.SaveChanges();
         }
@@ -33,6 +34,21 @@ namespace PhishyBank.Data
                 }
             };
             context.Users.AddRange(users);
+        }
+
+        private static void SeedAccounts(BankContext context)
+        {
+            if (!context.Accounts.Any())
+            {
+                var accounts = new Account[] {
+                    new Account{
+                        UserId=1,
+                        Type="Savings",
+                        DateCreatedUtc=new DateTime(2022, 08, 01, 10, 30, 50, DateTimeKind.Local).ToUniversalTime()
+                    },
+                };
+                context.Accounts.AddRange(accounts);
+            }
         }
 
         private static void SeedTransactions(BankContext context)

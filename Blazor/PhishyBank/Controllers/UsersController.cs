@@ -45,20 +45,19 @@ namespace PhishyBank.Server.Controllers
             return user;
         }
 
-        [HttpGet("{id}/transactions")]
-        public async Task<ActionResult<IEnumerable<AccountTransaction>>> GetTransactions(int id)
+        [HttpGet("{id}/accounts")]
+        public async Task<ActionResult<IEnumerable<Account>>> GetAccounts(int id)
         {
-            var transactions = await context.AccountTransactions
+            var accounts = await context.Accounts
             .Where(t => t.UserId == id)
-            .Take(30)
             .ToListAsync();
 
-            if (transactions == null)
+            if (accounts == null)
             {
                 return NotFound();
             }
 
-            return transactions;
+            return accounts;
         }
     }
 }
