@@ -116,6 +116,7 @@
         Type = "Unknown",
         DateCreatedUtc = DateTime.UtcNow
     };
+    private List<AccountTransaction> userTransactions = new List<AccountTransaction>();
 
     protected override async Task OnInitializedAsync()
     {
@@ -134,6 +135,7 @@
                 // Console.WriteLine(JsonSerializer.Serialize(jwtToken));
                 getUserData(jwtToken);
                 getAccounts(jwtToken);
+                getRecentTransactions(jwtToken);
             }
         }
     }
@@ -166,12 +168,11 @@
     protected async void getAccounts(JwtSecurityToken jwtToken)
     {
         var endpoint = new Uri(
-        new Uri(NavManager.BaseUri), // base URI from current context
-        $"/api/users/{jwtToken.Subject}/accounts" // address relative to the base URI, use / if needed
+        new Uri(NavManager.BaseUri),
+        $"/api/users/{jwtToken.Subject}/accounts"
         ).ToString();
         var response = await Http.GetAsync(endpoint);
 
-        // var test = await response.Content.ReadAsStringAsync();
         var contentStream = await response.Content.ReadAsStreamAsync();
         var deserializerOptions = new JsonSerializerOptions
         {
@@ -185,6 +186,31 @@
         {
             // NOTE Assuming one user has only one account, for now...
             userAccount = accounts[0];
+            this.StateHasChanged();
+        }
+    }
+
+    private async void getRecentTransactions(JwtSecurityToken jwtToken)
+    {
+        // NOTE Assuming one user has only one account, for now...
+        var endpoint = new Uri(
+        new Uri(NavManager.BaseUri),
+        $"/api/users/{jwtToken.Subject}/transactions"
+        ).ToString();
+        var response = await Http.GetAsync(endpoint);
+
+        var contentStream = await response.Content.ReadAsStreamAsync();
+        var deserializerOptions = new JsonSerializerOptions
+        {
+            PropertyNameCaseInsensitive = true
+        };
+        var recentTransactions = await JsonSerializer.DeserializeAsync
+        <List<AccountTransaction>>(contentStream, deserializerOptions);
+        Console.WriteLine(JsonSerializer.Serialize(recentTransactions));
+
+        if (recentTransactions != null)
+        {
+            userTransactions = recentTransactions;
             this.StateHasChanged();
         }
     }
