@@ -167,9 +167,13 @@
     {
         if (account.Id == -1) return String.Format("{0:C2}", CultureInfo.CreateSpecificCulture("en-SG"));
 
-        var balance = bankContext.AccountTransactions.Where(s => s.UserId == account.Id)
+        var balanceCredit = bankContext.AccountTransactions.Where(s => s.UserId == account.Id)
+        .Where(s => Convert.ToInt32(s.AccountIdTarget) == account.Id)
+        .Sum(o => o.Amount);
+        var balanceDebit = bankContext.AccountTransactions.Where(s => s.UserId == account.Id)
+        .Where(s => Convert.ToInt32(s.AccountIdSource) == account.Id)
         .Sum(o => o.Amount);
 
-        return balance.ToString("C2", CultureInfo.CreateSpecificCulture("en-SG"));
+        return (balanceCredit - balanceDebit).ToString("C2", CultureInfo.CreateSpecificCulture("en-SG"));
     }
 }
