@@ -4,7 +4,11 @@
 @using PhishyBank.Models
 @using System.Text.Json
 @using System.IdentityModel.Tokens.Jwt
+@using System.Globalization
+@using PhishyBank.Data
+@using PhishyBank.Server.Controllers
 
+@inject BankContext bankContext
 @inject ProtectedSessionStorage ProtectedSessionStore
 @inject NavigationManager NavManager
 @inject HttpClient Http
@@ -22,7 +26,7 @@
             @getAccountNumber()
         </b></h5>
     <h4>Balance Available: <b>
-            @getAccountBalance()
+            @accountBalance
         </b></h4>
     <br>
     <h3>Recent Transactions</h3>
@@ -46,6 +50,7 @@
         Type = "Unknown",
         DateCreatedUtc = DateTime.UtcNow
     };
+    private string accountBalance = "$0.00";
     private List<AccountTransaction> userTransactions = new List<AccountTransaction>();
 
     protected override async Task OnInitializedAsync()
@@ -68,7 +73,6 @@
                 // Console.WriteLine(JsonSerializer.Serialize(jwtToken));
                 getUserData(jwtToken);
                 getAccounts(jwtToken);
-                // getRecentTransactions(jwtToken);
             }
         }
     }
@@ -119,6 +123,7 @@
         {
             // NOTE Assuming one user has only one account, for now...
             userAccount = accounts[0];
+            accountBalance = getAccountBalance(userAccount);
             this.StateHasChanged();
         }
     }
@@ -158,13 +163,13 @@
         return String.Format("1337-{0,8:00000000}-2022", userAccount.Id);
     }
 
-    private string getAccountBalance()
+    private string getAccountBalance(Account account)
     {
-        if (userAccount.Id == -1) return "";
+        if (account.Id == -1) return String.Format("{0:C2}", CultureInfo.CreateSpecificCulture("en-SG"));
 
-        // Random _random = new Random();
-        // return String.Format("1337-{0,8:00000000}-2022", _random.NextDouble() * Math.Pow(10, 8));
+        var balance = bankContext.AccountTransactions.Where(s => s.UserId == account.Id)
+        .Sum(o => o.Amount);
 
-        return String.Format("1337-{0,8:00000000}-2022", userAccount.Id);
+        return balance.ToString("C2", CultureInfo.CreateSpecificCulture("en-SG"));
     }
 }
