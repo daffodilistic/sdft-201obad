@@ -3,6 +3,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.AspNetCore.Mvc;
 using PhishyBank.Models;
 using PhishyBank.Data;
+using PhishyBank.Server.State;
 using System.Text.Json;
 using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
@@ -71,10 +72,13 @@ namespace PhishyBank.Server.Controllers
                         else
                         {
                             logger.LogInformation("[{0}] User found", this.GetType().Name);
+                            var userModel = user.First();
+                            var jwtToken = CreateJWT(userModel);
                             return Ok(new LoginResult
                             {
                                 Success = true,
-                                JwtToken = CreateJWT(user.First())
+                                JwtToken = jwtToken,
+                                UserModel = userModel
                             });
                         }
                     }

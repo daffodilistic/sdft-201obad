@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Components.Web;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using PhishyBank.Data;
+using PhishyBank.Server.State;
 
 var builder = WebApplication.CreateBuilder(args);
 var _connectionString = builder.Configuration.GetConnectionString("PhishyBankDatabase");
@@ -18,7 +19,7 @@ builder.Services.AddSingleton<WeatherForecastService>();
 builder.Services.AddDatabaseDeveloperPageExceptionFilter();
 builder.Services.AddHttpClient();
 builder.Services.AddControllersWithViews();
-
+builder.Services.AddScoped<StateContainer>();
 
 var app = builder.Build();
 // Configure the HTTP request pipeline.
