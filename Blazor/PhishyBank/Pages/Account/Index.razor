@@ -7,27 +7,34 @@
 @using System.Globalization
 @using PhishyBank.Data
 @using PhishyBank.Server.Controllers
+@using PhishyBank.Server.State
 
 @inject BankContext bankContext
 @inject ProtectedSessionStorage ProtectedSessionStore
 @inject NavigationManager NavManager
 @inject HttpClient Http
+@inject StateContainer StateContainer
 @inject IJSRuntime JS
 
 <PageTitle>@PhishyLayoutComponentBase.getPageTitle("Dashboard")</PageTitle>
 
 <div class="container pt-body">
-    <h1 class="font-weight-bold">Hello, @currentUser.Name
+    <h1 class="font-weight-bold">
+        Hello, @currentUser.Name
     </h1>
     <br>
     <h3>Your Account Summary</h3>
     <hr>
-    <h5>Account No. <b>
+    <h5>
+        Account No. <b>
             @getAccountNumber()
-        </b></h5>
-    <h4>Balance Available: <b>
+        </b>
+    </h5>
+    <h4>
+        Balance Available: <b>
             @accountBalance
-        </b></h4>
+        </b>
+    </h4>
     <br>
     <h3>Recent Transactions</h3>
     <hr>
@@ -37,19 +44,19 @@
 
 @code {
     private User currentUser = new User
-    {
-        Id = -1,
-        Email = "",
-        Password = "",
-        Name = ""
-    };
+        {
+            Id = -1,
+            Email = "",
+            Password = "",
+            Name = ""
+        };
     private Account userAccount = new Account
-    {
-        Id = -1,
-        UserId = -1,
-        Type = "Unknown",
-        DateCreatedUtc = DateTime.UtcNow
-    };
+        {
+            Id = -1,
+            UserId = -1,
+            Type = "Unknown",
+            DateCreatedUtc = DateTime.UtcNow
+        };
     private string accountBalance = "$0.00";
     private List<AccountTransaction> userTransactions = new List<AccountTransaction>();
 
@@ -66,64 +73,12 @@
         // NOTE firstRender is true on page first load or refresh
         if (firstRender)
         {
-            string? token = (await ProtectedSessionStore.GetAsync<string>("jwtToken")).Value;
-            JwtSecurityToken? jwtToken = new JwtSecurityTokenHandler().ReadToken(token) as JwtSecurityToken;
-            if (jwtToken != null)
-            {
-                // Console.WriteLine(JsonSerializer.Serialize(jwtToken));
-                getUserData(jwtToken);
-                getAccounts(jwtToken);
+            var user = await StateContainer.GetUser();
+            if (user != null) {
+                var accounts = await StateContainer.GetAccounts();
+                userAccount = accounts[0];
+                currentUser = user;
             }
-        }
-    }
-
-    protected async void getUserData(JwtSecurityToken jwtToken)
-    {
-        var endpoint = new Uri(
-        new Uri(NavManager.BaseUri), // base URI from current context
-        $"/api/users/{jwtToken.Subject}" // address relative to the base URI, use / if needed
-        ).ToString();
-        var response = await Http.GetAsync(endpoint);
-
-        // var test = await response.Content.ReadAsStringAsync();
-        var contentStream = await response.Content.ReadAsStreamAsync();
-        var deserializerOptions = new JsonSerializerOptions
-        {
-            PropertyNameCaseInsensitive = true
-        };
-        var loggedInUser = await JsonSerializer.DeserializeAsync
-        <User>(contentStream, deserializerOptions);
-
-        if (loggedInUser != null)
-        {
-            currentUser = loggedInUser;
-            //Console.WriteLine(JsonSerializer.Serialize(currentUser));
-            this.StateHasChanged();
-        }
-    }
-
-    protected async void getAccounts(JwtSecurityToken jwtToken)
-    {
-        var endpoint = new Uri(
-        new Uri(NavManager.BaseUri),
-        $"/api/users/{jwtToken.Subject}/accounts"
-        ).ToString();
-        var response = await Http.GetAsync(endpoint);
-
-        var contentStream = await response.Content.ReadAsStreamAsync();
-        var deserializerOptions = new JsonSerializerOptions
-        {
-            PropertyNameCaseInsensitive = true
-        };
-        var accounts = await JsonSerializer.DeserializeAsync
-        <List<Account>>(contentStream, deserializerOptions);
-        // Console.WriteLine(JsonSerializer.Serialize(accounts));
-
-        if (accounts != null)
-        {
-            // NOTE Assuming one user has only one account, for now...
-            userAccount = accounts[0];
-            accountBalance = getAccountBalance(userAccount);
             this.StateHasChanged();
         }
     }
@@ -139,9 +94,9 @@
 
         var contentStream = await response.Content.ReadAsStreamAsync();
         var deserializerOptions = new JsonSerializerOptions
-        {
-            PropertyNameCaseInsensitive = true
-        };
+            {
+                PropertyNameCaseInsensitive = true
+            };
         var recentTransactions = await JsonSerializer.DeserializeAsync
         <List<AccountTransaction>>(contentStream, deserializerOptions);
         Console.WriteLine(JsonSerializer.Serialize(recentTransactions));
@@ -149,7 +104,6 @@
         if (recentTransactions != null)
         {
             userTransactions = recentTransactions;
-            this.StateHasChanged();
         }
     }
 

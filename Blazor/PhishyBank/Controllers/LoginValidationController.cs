@@ -77,8 +77,7 @@ namespace PhishyBank.Server.Controllers
                             return Ok(new LoginResult
                             {
                                 Success = true,
-                                JwtToken = jwtToken,
-                                UserModel = userModel
+                                JwtToken = jwtToken
                             });
                         }
                     }
