@@ -7,9 +7,8 @@
 @using Microsoft.Extensions.Logging
 @using Microsoft.AspNetCore.Components.Server.ProtectedBrowserStorage
 @using System.IdentityModel.Tokens.Jwt
-
 @using PhishyBank.Server.State
-@implements IDisposable
+
 @inject StateContainer StateContainer
 @inject ProtectedSessionStorage ProtectedSessionStore
 @inject HttpClient Http
@@ -75,7 +74,6 @@
                 LoginResult? result = await response.Content.ReadFromJsonAsync<LoginResult>();
                 if (result != null && result.Success)
                 {
-                    StateContainer.SetUser(result.UserModel!);
                     await ProtectedSessionStore.SetAsync("jwtToken", result.JwtToken!);
                     NavManager.NavigateTo("/account/");
                 }
@@ -92,15 +90,5 @@
             // messageStyles = "color:red";
             // message = "There was an error processing the form.";
         }
-    }
-
-    protected override void OnInitialized()
-    {
-        StateContainer.OnChange += StateHasChanged;
-    }
-
-    public void Dispose()
-    {
-        StateContainer.OnChange -= StateHasChanged;
     }
 }
