@@ -1,7 +1,16 @@
 ﻿@layout PhishyBankStateContainer
 @page "/"
 
+@inject NavigationManager NavManager
+
+@if (_Parent!.PhishyUser is not null) {
+    NavManager.NavigateTo("/account/");
+}
+
 <PageTitle>@PhishyLayoutComponentBase.getPageTitle("Home")</PageTitle>
+
+// Empty DIV to prevent the carousel text from being highlighted on page load
+<div id="hide-tab-highlight"></div>
 
 <div id="" class="carousel slide carousel-fade" data-interval="5000" data-ride="carousel">
     <div class="carousel-inner">
@@ -37,3 +46,8 @@
         </div>
     </div>
 </div>
+
+@code {
+    [CascadingParameter]
+    private PhishyBankStateContainer? _Parent { get; set; }
+}
