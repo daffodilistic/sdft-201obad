@@ -13,14 +13,14 @@
 @inject ProtectedSessionStorage ProtectedSessionStore
 @inject NavigationManager NavManager
 @inject HttpClient Http
-@inject StateContainer StateContainer
+@inject StateHelper StateHelper
 @inject IJSRuntime JS
 
 <PageTitle>@PhishyLayoutComponentBase.getPageTitle("Dashboard")</PageTitle>
 
 <div class="container pt-body">
     <h1 class="font-weight-bold">
-        Hello, @currentUser.Name
+        Hello, @_Parent.PhishyUser.Name
     </h1>
     <br>
     <h3>Your Account Summary</h3>
@@ -43,13 +43,6 @@
 </div>
 
 @code {
-    private User currentUser = new User
-        {
-            Id = -1,
-            Email = "",
-            Password = "",
-            Name = ""
-        };
     private Account userAccount = new Account
         {
             Id = -1,
@@ -57,8 +50,12 @@
             Type = "Unknown",
             DateCreatedUtc = DateTime.UtcNow
         };
+
     private string accountBalance = "$0.00";
     private List<AccountTransaction> userTransactions = new List<AccountTransaction>();
+    
+    [CascadingParameter]
+    private PhishyBankStateContainer _Parent { get; set; }
 
     protected override async Task OnInitializedAsync()
     {
@@ -73,13 +70,6 @@
         // NOTE firstRender is true on page first load or refresh
         if (firstRender)
         {
-            var user = await StateContainer.GetUser();
-            if (user != null) {
-                var accounts = await StateContainer.GetAccounts();
-                userAccount = accounts[0];
-                currentUser = user;
-            }
-            this.StateHasChanged();
         }
     }
 
