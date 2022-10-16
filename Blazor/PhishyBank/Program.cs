@@ -19,7 +19,7 @@ builder.Services.AddSingleton<WeatherForecastService>();
 builder.Services.AddDatabaseDeveloperPageExceptionFilter();
 builder.Services.AddHttpClient();
 builder.Services.AddControllersWithViews();
-builder.Services.AddScoped<StateContainer>();
+builder.Services.AddScoped<StateHelper>();
 
 var app = builder.Build();
 // Configure the HTTP request pipeline.

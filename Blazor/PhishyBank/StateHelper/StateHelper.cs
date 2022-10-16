@@ -7,13 +7,13 @@ using static System.Net.WebRequestMethods;
 
 namespace PhishyBank.Server.State
 {
-    public class StateContainer
+    public class StateHelper
     {
         [Inject]
         private ProtectedSessionStorage ProtectedSessionStore { get; set; }
         private NavigationManager NavManager { get; set; }
 
-        public StateContainer(ProtectedSessionStorage protectedSessionStore, NavigationManager navManager)
+        public StateHelper(ProtectedSessionStorage protectedSessionStore, NavigationManager navManager)
         {
             ProtectedSessionStore = protectedSessionStore;
             NavManager = navManager;
