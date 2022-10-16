@@ -58,25 +58,14 @@
 </div>
 
 @code {
-    private User? currentUser;
-    
     [CascadingParameter]
-    private PhishyBankStateContainer _Parent { get; set; }
+    private PhishyBankStateContainer? _Parent { get; set; }
 
     protected override async Task OnAfterRenderAsync(bool firstRender)
     {
         // NOTE firstRender is true on page first load or refresh
         if (firstRender)
         {
-            var user = await StateHelper.GetUser();
-            if (user != null)
-            {
-                currentUser = user;
-                Console.WriteLine("currentUser is " + currentUser.ToString());
-                this.StateHasChanged();
-            } else {
-                Console.WriteLine("User does not exist");
-            }
         }
     }
 }
